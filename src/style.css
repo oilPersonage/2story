@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Source Sans 3";
+  --font-display: "Playfair Display SC";
+
+  --color-bg: #fbfbfb;
+  --color-text: #2b2b2b;
+  --color-secondary: #b9b2aa;
+  --color-bg2: #f1f1f1;
+  --color-accent: #958617;
+
+  --base: 1rem; /* базовый размер текста */
+  --ratio: 1.25; /* модульное соотношение */
+}
+
+body {
+  @apply bg-bg text-text;
+}
+
+/* Fallback + современный вариант */
+h1 {
+  font-size: 11.09rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 5));
+  font-weight: bold;
+}
+
+h2 {
+  @apply font-display;
+  font-size: 6.85rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 4));
+  font-weight: bold;
+}
+
+h3 {
+  @apply font-display;
+  font-size: 4.23rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 3));
+  font-weight: bold;
+}
+
+h4 {
+  @apply font-display;
+  font-size: 2.62rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 2));
+  font-weight: bold;
+}
+
+h5 {
+  @apply font-display;
+  font-size: 1.62rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 1));
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 1rem; /* fallback */
+  font-size: calc(var(--base) * pow(var(--ratio), 0));
+  font-weight: bold;
+}
+p {
+  @apply font-[300];
+}
+
+.sidebar {
+  @apply top-0 bottom-0 z-10 fixed left-0 bg-bg px-5 flex items-center
+   max-w-[300px] overflow-hidden cursor-pointer;
+}
+
+.sidebar a:hover {
+  /* @apply scale-[1.03]; */
+}
+.sidebar a.active {
+  @apply text-accent;
+}
+.sidebar a {
+  @apply py-1.5 transition-colors;
+}
+.link-dot {
+  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg;
+}
+/* .sidebar .menu-btn {
+  @apply transition-all rotate-90 absolute left-0 top-[50%] -translate-y-[50%] duration-500 delay-1000;
+} */
+/* .sidebar:hover .menu-btn {
+  @apply -translate-x-10 delay-0;
+} */
+
+.block-wrapper {
+  @apply w-full h-full;
+}
+.scrolled .block-wrapper {
+  /* @apply saturate-0 h-[50svh]; */
+}
+.scrolled .scrolled-block-name,
+.scrolled-block:not(.active) .scrolled-block-name {
+  @apply -translate-y-[40px] opacity-0 duration-300 delay-0 ease-in;
+}
+.scrolled-block {
+  @apply flex flex-col px-2 pl-20 relative overflow-hidden;
+}
+
+.scrolled .scrolled-block-down,
+.scrolled-block:not(.active) .scrolled-block-down {
+  @apply translate-y-[40px] opacity-0 duration-300 delay-0 ease-in;
+}
+
+.scrolled-block-down {
+  @apply flex align-top justify-between py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
+}
+
+.scrolled-block-name {
+  @apply py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
+}
+.scrolled-block.active .text-block {
+  @apply opacity-0;
+}
+.scrolled-block-date {
+  @apply text-3xl font-display leading-6;
+}
+.scrolled-block-down p {
+  @apply max-w-[780px];
+}
+.scrolled-block {
+  @apply flex flex-col justify-center;
+}
+.scrolled-block-wrapper {
+  @apply min-h-[100svh] max-h-[100svh] w-full;
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
+}
+.scrolled-block:not(.active) .video-block {
+  @apply opacity-10 saturate-20;
+}
+#main-wrapper {
+  @apply bg-bg;
+}
+#main {
+  @apply pr-10 pl-[300px] will-change-transform;
+}
+#main video,
+img {
+  aspect-ratio: 16 / 9;
+  @apply h-full w-full block bg-bg2 object-cover;
+}
+.text-block {
+  @apply font-bold text-2xl absolute left-[50%] top-[50%] -translate-[50%] opacity-100 duration-300 font-display;
+}
+
+.video-block {
+  @apply flex-1 w-full h-full  min-h-0 bg-bg;
+  transition: opacity 0.6s, filter 0.6s;
+}
+
+.notification {
+  @apply fixed top-0 left-0 bg-bg2 py-1.5 px-3 z-10 text-sm pointer-events-none select-none opacity-0;
+}
+.notification p {
+  @apply font-normal;
+}
+
+.modal {
+  @apply fixed  inset-0 flex items-end pointer-events-none -z-1;
+}
+.modal.opened {
+  @apply z-[11] pointer-events-auto;
+}
+.modal-heading {
+  @apply flex items-center justify-between mb-4;
+}
+.modal-body {
+  @apply relative w-full z-2 px-20 py-18 bg-bg2 flex flex-col;
+  transform: translateY(100%);
+}
+.modal-body.terms .terms {
+  @apply block;
+}
+
+.modal-body .terms {
+  @apply hidden;
+}
+
+.modal-heading-link {
+  @apply hover:text-accent text-lg text-secondary font-display flex items-center gap-2 transition-colors;
+}
+.modal-heading-arrow {
+  @apply stroke-1 stroke-secondary transition-colors;
+}
+.modal-heading-link:hover .modal-heading-arrow {
+  @apply stroke-accent;
+}
+.modal-heading-link.active {
+  @apply text-text stroke-text pointer-events-none;
+}
+.modal-heading-link.active span {
+  @apply -ml-10 opacity-0;
+}
+.modal-heading-link span {
+  @apply transition-all duration-600;
+}
+
+.modal-overlay {
+  @apply absolute inset-0 bg-bg opacity-0;
+}
+.modal-body .terms:not(.active) {
+  @apply -translate-x-10 opacity-0;
+}
+.modal-body .terms,
+.modal-body .policy {
+  @apply block transition-all duration-600;
+}
+.modal-body .terms.active,
+.modal-body .policy.active {
+  @apply -translate-x-0 opacity-100;
+}
+.modal-body .policy {
+  @apply translate-x-10 opacity-0;
+}
+.modal-body-close {
+  @apply absolute top-full left-[50%] -translate-x-[50%];
+}
+
+.contacts-links a,
+.contacts-link svg {
+  @apply transition-colors;
+}
+.contacts a:hover,
+.contacts a:hover svg {
+  @apply text-accent stroke-accent;
+}

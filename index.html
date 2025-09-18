@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cal+Sans&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Playfair+Display+SC:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Quicksand:wght@300..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&family=Spectral+SC:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Wire+One&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>Vite App</title>
+  </head>
+  <body>
+    <div id="sidebar" class="sidebar">
+      <div class="overflow-hidden">
+        <nav
+          class="relative *:py-0.5 px-5 font-display *:block *:w-full text-nowrap"
+        >
+          <span class="link-dot"></span>
+          <a data-to="story" class="active" href="#">our story</a>
+          <a data-to="hyatt" href="#">
+            Hyatt Regency <br />
+            <span
+              class="font-sans font-[300] -mt-1 flex text-secondary text-sm"
+            >
+              Danang Resort and Spa</span
+            >
+          </a>
+          <a data-to="intercontinental" href="#">intercontinental da nang</a>
+          <a data-to="your" href="#">Your Project with Us</a>
+          <a data-to="contacts" href="#">contacts</a>
+        </nav>
+      </div>
+      <!-- <div class="menu-btn">MENU</div> -->
+    </div>
+
+    <div id="main" class="w-full max-h-svh overflow-hidden">
+      <div id="main-wrapper" class="relative">
+        <div class="grid gap-2">
+          <div data-name="story" class="scrolled-block block-wrapper active">
+            <div class="scrolled-block-wrapper">
+              <div class="text-block">OUR STORY</div>
+              <h2 class="scrolled-block-name">OUR STORY</h2>
+              <div class="video-block">
+                <img src="2.jpg" alt="" />
+              </div>
+              <div class="scrolled-block-down">
+                <p>
+                  English fish text" can refer to various things, such as the
+                  Fish emoji 🐟, which is a digital symbol used in messages;
+                  words and phrases about actual fish in the English language,
+                  like those found in literature or recipes; or the specific
+                  fish used in English cuisine, such as the cod used in fish and
+                  chips
+                </p>
+                <p class="scrolled-block-date">09.25.2012</p>
+              </div>
+            </div>
+          </div>
+          <div data-name="hyatt" class="scrolled-block block-wrapper">
+            <div class="scrolled-block-wrapper">
+              <div class="text-block">HYATT</div>
+              <h2 class="scrolled-block-name">HYATT REGENCY</h2>
+              <div class="video-block">
+                <video
+                  src="https://www.youtube.com/watch?v=60CkvVopyW4"
+                  controls
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  poster="6.jpg"
+                ></video>
+              </div>
+              <div class="scrolled-block-down">
+                <p>
+                  English fish text" can refer to various things, such as the
+                  Fish emoji 🐟, which is a digital symbol used in messages;
+                  words and phrases about actual fish in the English language,
+                  like those found in literature or recipes; or the specific
+                  fish used in English cuisine, such as the cod used in fish and
+                  chips
+                </p>
+                <p class="scrolled-block-date">09.25.2012</p>
+              </div>
+            </div>
+          </div>
+          <div
+            data-name="intercontinental"
+            class="scrolled-block block-wrapper"
+          >
+            <div class="scrolled-block-wrapper">
+              <div class="text-block">INTERCONTINENTAL</div>
+              <h2 class="scrolled-block-name">INTERCONTINENTAL</h2>
+              <div class="video-block">
+                <video
+                  src="https://www.youtube.com/60CkvVopyW4"
+                  controls
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  poster="6.jpg"
+                  width="640"
+                  height="360"
+                ></video>
+              </div>
+              <div class="scrolled-block-down">
+                <p>
+                  English fish text" can refer to various things, such as the
+                  Fish emoji 🐟, which is a digital symbol used in messages;
+                  words and phrases about actual fish in the English language,
+                  like those found in literature or recipes; or the specific
+                  fish used in English cuisine, such as the cod used in fish and
+                  chips
+                </p>
+                <p class="scrolled-block-date">09.25.2012</p>
+              </div>
+            </div>
+          </div>
+          <div data-name="your" class="scrolled-block block-wrapper active">
+            <div class="scrolled-block-wrapper">
+              <div class="text-block">YOUR PROJECT WITH US</div>
+              <h2 class="scrolled-block-name">YOUR PROJECT WITH US</h2>
+              <div class="video-block"></div>
+              <div class="scrolled-block-down">
+                <p>
+                  For collaboration opportunities, please get in touch with us.
+                </p>
+                <p class="scrolled-block-date animate-pulse">
+                  <svg
+                    width="20"
+                    height="18"
+                    viewBox="0 0 20 18"
+                    class="fill-bg2 w-10 h-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                      fill="inherit"
+                    />
+                  </svg>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            data-name="contacts"
+            class="scrolled-block h-screen flex items-center justify-center"
+          >
+            <div class="scrolled-block-wrapper">
+              <h2 class="scrolled-block-name">CONTACTS</h2>
+              <div class="video-block">
+                <div class="contacts flex h-full items-center gap-20">
+                  <div class="flex w-full justify-between">
+                    <div class="flex flex-col justify-center text-2xl gap-2">
+                      <p class="font-display text-sm text-secondary">E-MAIL</p>
+                      <div class="flex items-center gap-5">
+                        <a
+                          class="flex items-center gap-2 font-[300]"
+                          href="mailto:domracheva.lida@gmail.com"
+                        >
+                          <span class="w-7 h-7">
+                            <svg
+                              class="stroke-text stroke-1 h-full w-full"
+                              width="24"
+                              height="24"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M2 8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5H7"
+                                stroke="inherit"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
+                                stroke="inherit"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                d="M2 16.5H8"
+                                stroke="inherit"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                d="M2 12.5H5"
+                                stroke="inherit"
+                                stroke-miterlimit="10"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </span>
+                          domracheva.lida@gmail.com
+                        </a>
+                        <a
+                          data-for-copy="domracheva.lida@gmail.com"
+                          href="#"
+                          class="group hover:text-text transition-colors flex items-center gap-2 text-secondary bg-bg2 p-1.5 px-2 pr-3 text-sm"
+                        >
+                          <svg
+                            width="24"
+                            height="24"
+                            class="w-4 h-4 fill-secondary group-hover:fill-text transition-colors"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M11.1 22.75H6.9C2.99 22.75 1.25 21.01 1.25 17.1V12.9C1.25 8.99 2.99 7.25 6.9 7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V17.1C16.75 21.01 15.01 22.75 11.1 22.75ZM6.9 8.75C3.8 8.75 2.75 9.8 2.75 12.9V17.1C2.75 20.2 3.8 21.25 6.9 21.25H11.1C14.2 21.25 15.25 20.2 15.25 17.1V12.9C15.25 9.8 14.2 8.75 11.1 8.75H6.9Z"
+                              fill="inherit"
+                            />
+                            <path
+                              d="M17.1 16.75H16C15.59 16.75 15.25 16.41 15.25 16V12.9C15.25 9.8 14.2 8.75 11.1 8.75H8C7.59 8.75 7.25 8.41 7.25 8V6.9C7.25 2.99 8.99 1.25 12.9 1.25H17.1C21.01 1.25 22.75 2.99 22.75 6.9V11.1C22.75 15.01 21.01 16.75 17.1 16.75ZM16.75 15.25H17.1C20.2 15.25 21.25 14.2 21.25 11.1V6.9C21.25 3.8 20.2 2.75 17.1 2.75H12.9C9.8 2.75 8.75 3.8 8.75 6.9V7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V15.25Z"
+                              fill="inherit"
+                            />
+                          </svg>
+                          click to copy
+                        </a>
+                      </div>
+
+                      <div class="flex flex-col gap-2 mt-5">
+                        <p class="font-display text-sm text-secondary">
+                          FOLLOW US
+                        </p>
+                        <div class="flex gap-2">
+                          <a
+                            target="_blank"
+                            class="w-fit"
+                            href="https://www.instagram.com/lirules/"
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              class="h-7 w-7 stroke-text stroke-1"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+                                stroke="inherit"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z"
+                                stroke="inherit"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                              <path
+                                d="M17.6361 7H17.6477"
+                                stroke="3"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            target="_blank"
+                            class="w-fit"
+                            href="https://instagram.com/lirules"
+                          >
+                            <svg
+                              width="24"
+                              height="24"
+                              class="h-7 w-7 stroke-text stroke-1"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M21.5484 2.7019L16.0586 21.298H16.0336L10.7935 13.4567L2.95215 8.21654V8.1875L21.5156 2.66797L21.5484 2.7019Z"
+                                stroke="inherit"
+                                stroke-linecap="square"
+                              />
+                              <path
+                                d="M11.0396 13.2685L15.4819 8.82617"
+                                stroke="inherit"
+                                stroke-linecap="square"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contacts-links">
+                      <p class="font-display text-sm text-secondary mb-2">
+                        LINKS
+                      </p>
+                      <div class="flex flex-col gap-1">
+                        <a data-modal="terms" href="#">Terms and Conditions</a>
+                        <a data-modal="policy" href="#">Privacy Policy</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="scrolled-block-down">
+                <div class="flex -gap-1 flex-col">
+                  <p>© 2025 Lirules. All rights reserved.</p>
+                  <p class="!max-w-full">
+                    All photos and videos on this website are the property of
+                    Lirules and may not be used, reproduced, or distributed
+                    without permission.
+                  </p>
+                </div>
+              </div>
+              <div class="text-block">CONTACTS</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal">
+      <div class="modal-overlay"></div>
+      <div class="modal-body">
+        <div class="modal-body-close">close</div>
+        <div class="modal-heading">
+          <a data-modal-type="terms" href="#" class="modal-heading-link active">
+            <span>
+              <svg
+                width="31"
+                height="24"
+                class="modal-heading-arrow"
+                viewBox="0 0 31 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697"
+                  stroke="inherit"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M27.4899 12H3.66797"
+                  stroke="inherit"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            Terms and Conditions
+          </a>
+          <a data-modal-type="policy" href="#" class="modal-heading-link">
+            Privacy Policy
+            <span class="right">
+              <svg
+                width="31"
+                height="24"
+                class="modal-heading-arrow -scale-100"
+                viewBox="0 0 31 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697"
+                  stroke="inherit"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M27.4899 12H3.66797"
+                  stroke="inherit"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="modal-body-contents flex overflow-hidden *:max-w-[50%]">
+          <p class="terms active" data-modal-content="terms">
+            All photos, videos, graphics, and other content on this website are
+            the exclusive property of [Your Name]. <br />
+            You may not copy, reproduce, distribute, or use any materials
+            without prior written permission. <br />
+            Unauthorized use of this content is strictly prohibited and may
+            result in legal action. <br />
+            This website is provided for personal viewing purposes only.
+          </p>
+
+          <p class="policy" data-modal-content="policy">
+            This website does not collect, store, or process any personal data.
+            <br />
+            We do not use cookies, analytics, or tracking tools. <br />
+            If you contact us via external platforms (e.g. Instagram, email),
+            your data will be handled according to the policies of those
+            services.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="notification">
+      <p class="notification-text">Copied</p>
+      <span class="notification-close"></span>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
