@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* html,
+body {
+  overscroll-behavior: none;
+} */
+
 @theme {
   --font-sans: "Source Sans 3";
   --font-display: "Playfair Display SC";
@@ -99,7 +104,7 @@ nav {
   @apply max-md:text-sm;
 }
 .link-dot {
-  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg hidden;
+  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg max-md:hidden;
 }
 /* .sidebar .menu-btn {
   @apply transition-all rotate-90 absolute left-0 top-[50%] -translate-y-[50%] duration-500 delay-1000;
@@ -156,7 +161,9 @@ nav {
   @apply bg-bg;
 }
 #main {
-  @apply pr-10 pl-[300px] will-change-transform max-md:px-5;
+  @apply pr-10 pl-[300px] will-change-transform max-md:px-5 max-h-svh overflow-hidden;
+  overscroll-behavior: none; /* блокируем только внутри приложения */
+  touch-action: none; /* запрещаем жесты браузера, свайп назад/вперёд и т.п. */
 }
 #main video,
 img {

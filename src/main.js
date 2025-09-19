@@ -66,8 +66,10 @@ function applyStyles() {
   links[activeScreenIdx].classList.remove("active");
 
   activeScreenIdx = cIdx;
-  applyDotStyle(cIdx);
   const el = [...blocks.values()][cIdx];
+
+  applyDotStyle(cIdx);
+
   el.classList.add("active");
   links[activeScreenIdx].classList.add("active");
 }
@@ -76,7 +78,6 @@ function applyScroll(deltaY = 0) {
   maxScroll = mainWrapper.offsetHeight - main.clientHeight + state.offset * 2;
 
   const delta = deltaY / maxScroll;
-
   // Обновляем прогресс
   prevProgress = state.progress;
   state.progress = utils.clamp(state.progress + delta, 0, 1);
@@ -148,42 +149,46 @@ window.addEventListener(
 let startY = 0;
 let touching = false;
 
-if (window.matchMedia("max-widht: 460px")) {
+if (window.matchMedia("(width <= 460px)").matches) {
   createTimer({
     duration: 1000,
     loop: true,
     frameRate: 60,
     // Делаем догоняющее приближение
     onUpdate: () => {
-      state.progress += ((state.targetProgress - state.progress) * 0.1).toFixed(
-        3
-      );
-      console.log(state.targetProgress - state.progress);
+      state.progress = (state.targetProgress - state.progress) * 0.1;
+      console.log(state.progress);
       applyScroll(0);
       applyStyles();
     },
   });
   // слушаем touch
-  document.addEventListener("touchstart", (e) => {
-    touching = true;
-    startY = e.touches[0].clientY;
-  });
+  document.querySelector("#main").addEventListener(
+    "touchstart",
+    (e) => {
+      console.log(123);
+      touching = true;
+      startY = e.touches[0].clientY;
+    },
+    { passive: true }
+  );
 
   // слушаем touch
-  document.addEventListener("touchend", (e) => {
+  document.querySelector("#main").addEventListener("touchend", (e) => {
     touching = false;
   });
-
-  document.addEventListener("touchmove", (e) => {
+  console.log(document.querySelector("#main"));
+  document.querySelector("#main").addEventListener("touchmove", (e) => {
     if (!touching) return;
     const currentY = e.touches[0].clientY;
     const deltaY = startY - currentY; // свайп вверх/вниз
-    console.log(deltaY);
+    // console.log(deltaY);
     state.targetProgress = utils.clamp(
       state.targetProgress + deltaY * 0.001,
       0,
       1
     ); // множитель чувствительности
+    console.log(state.targetProgress);
     startY = currentY; // обновляем для плавного движения
   });
 }
