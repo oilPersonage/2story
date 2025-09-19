@@ -1,4 +1,4 @@
-import { animate, utils } from "animejs";
+import { animate, createTimer, utils } from "animejs";
 import "./copy.js";
 import "./modal.js";
 
@@ -11,7 +11,12 @@ const MIN_IMAGE_SIZE = 300;
 // let progress = 0; // текущее положение (0..1)
 let prevProgress = 0; // предыдущее
 let velocity = 0; // велосити
-export const state = { offset: 0, progress: 0, allowScroll: true }; // скорость
+export const state = {
+  offset: 0,
+  progress: 0,
+  targetProgress: 0,
+  allowScroll: true,
+}; // скорость
 let halfScreen = window.innerHeight / 2;
 let maxScroll = 0;
 let lastTargetId = null;
@@ -137,3 +142,48 @@ window.addEventListener(
   },
   { passive: false }
 );
+
+// MOBILE VERSION
+
+let startY = 0;
+let touching = false;
+
+if (window.matchMedia("max-widht: 460px")) {
+  createTimer({
+    duration: 1000,
+    loop: true,
+    frameRate: 60,
+    // Делаем догоняющее приближение
+    onUpdate: () => {
+      state.progress += ((state.targetProgress - state.progress) * 0.1).toFixed(
+        3
+      );
+      console.log(state.targetProgress - state.progress);
+      applyScroll(0);
+      applyStyles();
+    },
+  });
+  // слушаем touch
+  document.addEventListener("touchstart", (e) => {
+    touching = true;
+    startY = e.touches[0].clientY;
+  });
+
+  // слушаем touch
+  document.addEventListener("touchend", (e) => {
+    touching = false;
+  });
+
+  document.addEventListener("touchmove", (e) => {
+    if (!touching) return;
+    const currentY = e.touches[0].clientY;
+    const deltaY = startY - currentY; // свайп вверх/вниз
+    console.log(deltaY);
+    state.targetProgress = utils.clamp(
+      state.targetProgress + deltaY * 0.001,
+      0,
+      1
+    ); // множитель чувствительности
+    startY = currentY; // обновляем для плавного движения
+  });
+}

@@ -27,10 +27,21 @@ const animateOver = animate(modal.querySelector(".modal-overlay"), {
   },
 });
 
+function changeDocs(modalType) {
+  contents.get(currentType).classList.remove("active");
+  document
+    .querySelector(`[data-modal-type=${currentType}]`)
+    .classList.remove("active");
+  currentType = modalType;
+  el.classList.add("active");
+  contents.get(currentType).classList.add("active");
+}
+
 links.forEach((el) => {
   el.addEventListener("click", () => {
     state.allowScroll = false;
     modal.classList.add("opened");
+    changeDocs(el.dataset.modalType);
     animateBody.play();
     animateOver.play();
   });
@@ -39,13 +50,7 @@ links.forEach((el) => {
 modalChangeLinks.forEach((el) => {
   el.addEventListener("click", () => {
     const { modalType } = el.dataset;
-    contents.get(currentType).classList.remove("active");
-    document
-      .querySelector(`[data-modal-type=${currentType}]`)
-      .classList.remove("active");
-    currentType = modalType;
-    el.classList.add("active");
-    contents.get(currentType).classList.add("active");
+    changeDocs(modalType);
   });
 });
 

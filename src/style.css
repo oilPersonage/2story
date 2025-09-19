@@ -13,58 +13,77 @@
   --base: 1rem; /* базовый размер текста */
   --ratio: 1.25; /* модульное соотношение */
 }
+@layer base {
+  :root {
+    --base: 1rem;
+  }
 
-body {
-  @apply bg-bg text-text;
+  @media screen and (max-width: 460px) {
+    :root {
+      --base: 0.65rem;
+    }
+  }
+
+  body {
+    @apply bg-bg text-text;
+  }
+
+  /* Fallback + современный вариант */
+  h1 {
+    font-size: 11.09rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 5));
+    font-weight: bold;
+  }
+
+  h2 {
+    @apply font-display;
+    font-size: 6.85rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 4));
+    font-weight: bold;
+  }
+
+  h3 {
+    @apply font-display;
+    font-size: 4.23rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 3));
+    font-weight: bold;
+  }
+
+  h4 {
+    @apply font-display;
+    font-size: 2.62rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 2));
+    font-weight: bold;
+  }
+
+  h5 {
+    @apply font-display;
+    font-size: 1.62rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 1));
+    font-weight: bold;
+  }
+
+  h6 {
+    font-size: 1rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 0));
+    font-weight: bold;
+  }
+  p {
+    @apply font-[300] max-sm:text-sm;
+  }
 }
 
-/* Fallback + современный вариант */
-h1 {
-  font-size: 11.09rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 5));
-  font-weight: bold;
-}
-
-h2 {
-  @apply font-display;
-  font-size: 6.85rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 4));
-  font-weight: bold;
-}
-
-h3 {
-  @apply font-display;
-  font-size: 4.23rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 3));
-  font-weight: bold;
-}
-
-h4 {
-  @apply font-display;
-  font-size: 2.62rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 2));
-  font-weight: bold;
-}
-
-h5 {
-  @apply font-display;
-  font-size: 1.62rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 1));
-  font-weight: bold;
-}
-
-h6 {
-  font-size: 1rem; /* fallback */
-  font-size: calc(var(--base) * pow(var(--ratio), 0));
-  font-weight: bold;
-}
-p {
-  @apply font-[300];
-}
-
-.sidebar {
+/* .sidebar {
   @apply top-0 bottom-0 z-10 fixed left-0 bg-bg px-5 flex items-center
    max-w-[300px] overflow-hidden cursor-pointer;
+} */
+
+nav {
+  @apply relative *:py-0.5 px-5 font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-1;
+}
+.sidebar {
+  @apply top-10 md:top-0 md:bottom-0 z-10 fixed max-md:right-0 md:left-0 md:bg-bg md:px-5 flex items-center
+     md:max-w-[300px] overflow-hidden cursor-pointer max-md:opacity-0;
 }
 
 .sidebar a:hover {
@@ -74,10 +93,13 @@ p {
   @apply text-accent;
 }
 .sidebar a {
-  @apply py-1.5 transition-colors;
+  @apply py-1.5 transition-all bg-bg max-md:pl-5;
+}
+.sidebar a:not(.active) {
+  @apply max-md:text-sm;
 }
 .link-dot {
-  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg;
+  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg hidden;
 }
 /* .sidebar .menu-btn {
   @apply transition-all rotate-90 absolute left-0 top-[50%] -translate-y-[50%] duration-500 delay-1000;
@@ -97,7 +119,7 @@ p {
   @apply -translate-y-[40px] opacity-0 duration-300 delay-0 ease-in;
 }
 .scrolled-block {
-  @apply flex flex-col px-2 pl-20 relative overflow-hidden;
+  @apply flex flex-col justify-center md:px-2 md:pl-20 relative overflow-hidden;
 }
 
 .scrolled .scrolled-block-down,
@@ -121,9 +143,6 @@ p {
 .scrolled-block-down p {
   @apply max-w-[780px];
 }
-.scrolled-block {
-  @apply flex flex-col justify-center;
-}
 .scrolled-block-wrapper {
   @apply min-h-[100svh] max-h-[100svh] w-full;
   /* display: grid; */
@@ -137,7 +156,7 @@ p {
   @apply bg-bg;
 }
 #main {
-  @apply pr-10 pl-[300px] will-change-transform;
+  @apply pr-10 pl-[300px] will-change-transform max-md:px-5;
 }
 #main video,
 img {
