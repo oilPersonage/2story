@@ -33,7 +33,10 @@ function changeDocs(modalType) {
     .querySelector(`[data-modal-type=${currentType}]`)
     .classList.remove("active");
   currentType = modalType;
-  el.classList.add("active");
+  console.log(document.querySelector(`[data-modal=${currentType}]`));
+  document
+    .querySelector(`[data-modal-type=${currentType}]`)
+    .classList.add("active");
   contents.get(currentType).classList.add("active");
 }
 
@@ -41,7 +44,7 @@ links.forEach((el) => {
   el.addEventListener("click", () => {
     state.allowScroll = false;
     modal.classList.add("opened");
-    changeDocs(el.dataset.modalType);
+    changeDocs(el.dataset.modal);
     animateBody.play();
     animateOver.play();
   });

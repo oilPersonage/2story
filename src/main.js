@@ -18,7 +18,7 @@ export const state = {
   allowScroll: true,
 }; // скорость
 let halfScreen = window.innerHeight / 2;
-let maxScroll = 0;
+let maxScroll = mainWrapper.offsetHeight;
 let lastTargetId = null;
 let activeScreenIdx = 0;
 
@@ -83,9 +83,7 @@ function applyScroll(deltaY = 0) {
   state.progress = utils.clamp(state.progress + delta, 0, 1);
   // Считаем velocity (разница за событие)
   velocity = state.progress - prevProgress;
-  // console.log(state.offset);
   const translateY = state.progress * maxScroll - state.offset;
-  // console.log(mainWrapper.offsetHeight, state.offset);
   mainWrapper.style.transform = `translateY(${translateY * -1}px)`;
 }
 
@@ -146,49 +144,123 @@ window.addEventListener(
 
 // MOBILE VERSION
 
-let startY = 0;
-let touching = false;
-
 if (window.matchMedia("(width <= 460px)").matches) {
-  createTimer({
-    duration: 1000,
-    loop: true,
-    frameRate: 60,
-    // Делаем догоняющее приближение
-    onUpdate: () => {
-      state.progress = (state.targetProgress - state.progress) * 0.1;
-      console.log(state.progress);
-      applyScroll(0);
-      applyStyles();
-    },
+  let touching = false;
+  let startY = 0;
+  let lastY = 0;
+  let offsetY = 0; // коэффициент трения (0.9–0.98 норм)
+  const friction = 0.95; // коэффициент трения (0.9–0.98 норм)
+  let currentMobileIdx = 0;
+
+  const { height: sidebarHeight, top } = sidebar.getBoundingClientRect();
+
+  // function createElementF(v) {
+  //   const el = document.createElement("div");
+  //   el.innerText = v;
+  //   el.classList.add("helper");
+  //   el.style.top = v + "px";
+  //   document.body.append(el);
+  // }
+  // createElementF(top);
+  // createElementF(top + sidebarHeight);
+
+  const animateMobileOpen = animate(sidebar, {
+    x: { to: -20, duration: 600 },
+    maxWidth: { from: "10%", to: "100%", duration: 600 },
+    autoplay: false,
+    ease: "inOut(1.675)",
   });
+
   // слушаем touch
-  document.querySelector("#main").addEventListener(
+  sidebar.addEventListener(
     "touchstart",
     (e) => {
-      console.log(123);
+      sidebar.classList.add("touched");
+      main.classList.add("touched");
+      animateMobileOpen.play();
       touching = true;
-      startY = e.touches[0].clientY;
     },
     { passive: true }
   );
 
   // слушаем touch
-  document.querySelector("#main").addEventListener("touchend", (e) => {
+  sidebar.addEventListener("touchend", (e) => {
     touching = false;
+    sidebar.classList.remove("touched");
+    main.classList.remove("touched");
+    animateMobileOpen.reverse();
   });
-  console.log(document.querySelector("#main"));
-  document.querySelector("#main").addEventListener("touchmove", (e) => {
-    if (!touching) return;
-    const currentY = e.touches[0].clientY;
-    const deltaY = startY - currentY; // свайп вверх/вниз
-    // console.log(deltaY);
-    state.targetProgress = utils.clamp(
-      state.targetProgress + deltaY * 0.001,
-      0,
-      1
-    ); // множитель чувствительности
-    console.log(state.targetProgress);
-    startY = currentY; // обновляем для плавного движения
+
+  const blocksSize = blocks.size - 1;
+
+  sidebar.addEventListener("touchmove", (e) => {
+    if (!touching || e.touches[0].clientY < top) return;
+    const clientY = e.touches[0].clientY;
+    let localProgress = (clientY - top) / sidebarHeight;
+
+    let cIdx = Math.floor(localProgress * (blocksSize + 1));
+
+    if (currentMobileIdx === cIdx || cIdx > blocksSize) return;
+
+    currentMobileIdx = utils.clamp(cIdx, 0, blocksSize);
+    animate(state, {
+      progress: cIdx / blocksSize,
+      duration: 600,
+      onUpdate: () => {
+        applyScroll(0);
+        applyStyles();
+      },
+    });
+
+    // applyScroll(dy * -1);
+  });
+
+  // MAIN
+
+  const timer = createTimer({
+    duration: Infinity,
+    frameRate: 60,
+    onUpdate: () => {
+      offsetY *= friction;
+
+      if (Math.abs(velocity) < 0.0001 && !touching) return;
+
+      applyScroll(offsetY);
+      applyStyles();
+    },
+  });
+
+  // TOUCH START
+  main.addEventListener(
+    "touchstart",
+    (e) => {
+      touching = true;
+      lastY = e.touches[0].clientY; // обязательно инициализируем
+      velocity = 0; // сбрасываем инерцию при начале взаимодействия
+    },
+    { passive: true }
+  );
+
+  // TOUCH MOVE
+  main.addEventListener(
+    "touchmove",
+    (e) => {
+      if (!touching || e.touches[0].clientY < top) return;
+
+      const clientY = e.touches[0].clientY;
+      const delta = clientY - lastY; // положительный — пальцем вниз
+      lastY = clientY;
+      offsetY = delta * -1.2;
+      // краткосрочная скорость — нужна для инерции при отпускании
+      // можно усилить: velocity = delta * 0.8; или нормализовать по dt
+      velocity = delta;
+    },
+    { passive: false }
+  ); // если блокируешь системный скролл, нужно passive: false
+
+  // TOUCH END
+  main.addEventListener("touchend", (e) => {
+    touching = false;
+    // инерция автоматически применяется в onUpdate таймера
   });
 }

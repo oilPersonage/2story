@@ -20,7 +20,7 @@
           <a data-to="hyatt" href="#">
             Hyatt Regency <br />
             <span
-              class="font-sans font-[300] -mt-1 flex text-secondary text-sm"
+              class="font-sans font-[300] md:-mt-1 flex text-secondary text-sm"
             >
               Danang Resort and Spa</span
             >
@@ -29,6 +29,7 @@
           <a data-to="your" href="#">Your Project with Us</a>
           <a data-to="contacts" href="#">contacts</a>
         </nav>
+        <p class="sidebar-menu"></p>
       </div>
       <!-- <div class="menu-btn">MENU</div> -->
     </div>
@@ -150,83 +151,91 @@
             <div class="scrolled-block-wrapper">
               <h2 class="scrolled-block-name">CONTACTS</h2>
               <div class="video-block">
-                <div class="contacts flex h-full items-center gap-20">
-                  <div class="flex w-full justify-between">
-                    <div class="flex flex-col justify-center text-2xl gap-2">
-                      <p class="font-display text-sm text-secondary">E-MAIL</p>
-                      <div class="flex items-center gap-5">
-                        <a
-                          class="flex items-center gap-2 font-[300]"
-                          href="mailto:domracheva.lida@gmail.com"
+                <div class="contacts flex h-full flex-col items-center gap-20">
+                  <div class="flex flex-1 w-full max-md:flex-col">
+                    <div
+                      class="flex flex-col flex-1 justify-center text-2xl gap-10"
+                    >
+                      <div class="flex flex-col gap-3">
+                        <p class="font-display text-sm text-secondary">
+                          E-MAIL
+                        </p>
+                        <div
+                          class="flex max-md:flex-col md:items-center gap-2 md:gap-5"
                         >
-                          <span class="w-7 h-7">
+                          <a
+                            class="flex items-center gap-2 max-md:text-lg font-normal"
+                            href="mailto:domracheva.lida@gmail.com"
+                          >
+                            <span class="h-5 md:w-7 w-5 md:h-7">
+                              <svg
+                                class="stroke-text stroke-1 h-full w-full"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M2 8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5H7"
+                                  stroke="inherit"
+                                  stroke-miterlimit="10"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                                <path
+                                  d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
+                                  stroke="inherit"
+                                  stroke-miterlimit="10"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                                <path
+                                  d="M2 16.5H8"
+                                  stroke="inherit"
+                                  stroke-miterlimit="10"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                                <path
+                                  d="M2 12.5H5"
+                                  stroke="inherit"
+                                  stroke-miterlimit="10"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                />
+                              </svg>
+                            </span>
+                            domracheva.lida@gmail.com
+                          </a>
+                          <a
+                            data-for-copy="domracheva.lida@gmail.com"
+                            href="#"
+                            class="group w-fit hover:text-text transition-colors flex items-center gap-2 text-secondary bg-bg2 p-1.5 px-2 pr-3 text-sm"
+                          >
                             <svg
-                              class="stroke-text stroke-1 h-full w-full"
                               width="24"
                               height="24"
-                              fill="none"
+                              class="w-4 h-4 fill-secondary group-hover:fill-text transition-colors"
                               viewBox="0 0 24 24"
+                              fill="none"
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <path
-                                d="M2 8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5H7"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                d="M11.1 22.75H6.9C2.99 22.75 1.25 21.01 1.25 17.1V12.9C1.25 8.99 2.99 7.25 6.9 7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V17.1C16.75 21.01 15.01 22.75 11.1 22.75ZM6.9 8.75C3.8 8.75 2.75 9.8 2.75 12.9V17.1C2.75 20.2 3.8 21.25 6.9 21.25H11.1C14.2 21.25 15.25 20.2 15.25 17.1V12.9C15.25 9.8 14.2 8.75 11.1 8.75H6.9Z"
+                                fill="inherit"
                               />
                               <path
-                                d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                              <path
-                                d="M2 16.5H8"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                              <path
-                                d="M2 12.5H5"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
+                                d="M17.1 16.75H16C15.59 16.75 15.25 16.41 15.25 16V12.9C15.25 9.8 14.2 8.75 11.1 8.75H8C7.59 8.75 7.25 8.41 7.25 8V6.9C7.25 2.99 8.99 1.25 12.9 1.25H17.1C21.01 1.25 22.75 2.99 22.75 6.9V11.1C22.75 15.01 21.01 16.75 17.1 16.75ZM16.75 15.25H17.1C20.2 15.25 21.25 14.2 21.25 11.1V6.9C21.25 3.8 20.2 2.75 17.1 2.75H12.9C9.8 2.75 8.75 3.8 8.75 6.9V7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V15.25Z"
+                                fill="inherit"
                               />
                             </svg>
-                          </span>
-                          domracheva.lida@gmail.com
-                        </a>
-                        <a
-                          data-for-copy="domracheva.lida@gmail.com"
-                          href="#"
-                          class="group hover:text-text transition-colors flex items-center gap-2 text-secondary bg-bg2 p-1.5 px-2 pr-3 text-sm"
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            class="w-4 h-4 fill-secondary group-hover:fill-text transition-colors"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M11.1 22.75H6.9C2.99 22.75 1.25 21.01 1.25 17.1V12.9C1.25 8.99 2.99 7.25 6.9 7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V17.1C16.75 21.01 15.01 22.75 11.1 22.75ZM6.9 8.75C3.8 8.75 2.75 9.8 2.75 12.9V17.1C2.75 20.2 3.8 21.25 6.9 21.25H11.1C14.2 21.25 15.25 20.2 15.25 17.1V12.9C15.25 9.8 14.2 8.75 11.1 8.75H6.9Z"
-                              fill="inherit"
-                            />
-                            <path
-                              d="M17.1 16.75H16C15.59 16.75 15.25 16.41 15.25 16V12.9C15.25 9.8 14.2 8.75 11.1 8.75H8C7.59 8.75 7.25 8.41 7.25 8V6.9C7.25 2.99 8.99 1.25 12.9 1.25H17.1C21.01 1.25 22.75 2.99 22.75 6.9V11.1C22.75 15.01 21.01 16.75 17.1 16.75ZM16.75 15.25H17.1C20.2 15.25 21.25 14.2 21.25 11.1V6.9C21.25 3.8 20.2 2.75 17.1 2.75H12.9C9.8 2.75 8.75 3.8 8.75 6.9V7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V15.25Z"
-                              fill="inherit"
-                            />
-                          </svg>
-                          click to copy
-                        </a>
+                            click to copy
+                          </a>
+                        </div>
                       </div>
 
-                      <div class="flex flex-col gap-2 mt-5">
+                      <div class="flex flex-col gap-3">
                         <p class="font-display text-sm text-secondary">
                           FOLLOW US
                         </p>
@@ -293,10 +302,10 @@
                       </div>
                     </div>
                     <div class="contacts-links">
-                      <p class="font-display text-sm text-secondary mb-2">
+                      <p class="font-display text-sm text-secondary mb-3">
                         LINKS
                       </p>
-                      <div class="flex flex-col gap-1">
+                      <div class="flex flex-col gap-0.5 md:gap-1">
                         <a data-modal="terms" href="#">Terms and Conditions</a>
                         <a data-modal="policy" href="#">Privacy Policy</a>
                       </div>
@@ -383,7 +392,9 @@
           </a>
         </div>
 
-        <div class="modal-body-contents flex overflow-hidden *:max-w-[50%]">
+        <div
+          class="modal-body-contents flex overflow-hidden max-md:*:min-w-full md:*:max-w-[50%]"
+        >
           <p class="terms active" data-modal-content="terms">
             All photos, videos, graphics, and other content on this website are
             the exclusive property of [Your Name]. <br />
@@ -394,7 +405,7 @@
             This website is provided for personal viewing purposes only.
           </p>
 
-          <p class="policy" data-modal-content="policy">
+          <p class="policy md:text-right" data-modal-content="policy">
             This website does not collect, store, or process any personal data.
             <br />
             We do not use cookies, analytics, or tracking tools. <br />

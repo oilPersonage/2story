@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
-/* html,
+html,
 body {
   overscroll-behavior: none;
-} */
+}
 
 @theme {
   --font-sans: "Source Sans 3";
@@ -84,11 +84,24 @@ body {
 } */
 
 nav {
-  @apply relative *:py-0.5 px-5 font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-1;
+  @apply relative *:py-0.5 md:px-5 font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-0.5;
 }
 .sidebar {
-  @apply top-10 md:top-0 md:bottom-0 z-10 fixed max-md:right-0 md:left-0 md:bg-bg md:px-5 flex items-center
-     md:max-w-[300px] overflow-hidden cursor-pointer max-md:opacity-0;
+  @apply top-[50%] max-md:-translate-y-[50%] md:top-0 md:bottom-0 z-10 fixed max-md:right-0 md:left-0 md:bg-bg md:px-5 flex items-center
+    max-w-10 md:max-w-[300px] overflow-hidden cursor-pointer;
+}
+.sidebar.touched a {
+  @apply opacity-100;
+}
+.sidebar.touched {
+  /* @apply shadow-none; */
+  /* @apply right-10 bg-transparent max-w-full; */
+}
+.sidebar-menu {
+  @apply absolute right-2 w-1 top-0 h-full rounded-md bg-accent animate-pulse md:hidden transition-transform delay-300 font-display;
+}
+.sidebar.touched .sidebar-menu {
+  @apply translate-x-10 delay-0;
 }
 
 .sidebar a:hover {
@@ -98,13 +111,20 @@ nav {
   @apply text-accent;
 }
 .sidebar a {
-  @apply py-1.5 transition-all bg-bg max-md:pl-5;
+  @apply py-1.5 max-md:flex max-md:flex-row-reverse max-md:gap-2 items-center transition-all bg-white md:bg-bg max-md:px-5 max-md:opacity-0 duration-600 max-md:text-right;
 }
 .sidebar a:not(.active) {
-  @apply max-md:text-sm;
+  /* @apply max-md:text-sm; */
+}
+.sidebar a br {
+  @apply max-md:hidden;
 }
 .link-dot {
   @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg max-md:hidden;
+}
+
+.helper {
+  @apply fixed z-20 right-0 h-[1px] w-3 bg-red-500;
 }
 /* .sidebar .menu-btn {
   @apply transition-all rotate-90 absolute left-0 top-[50%] -translate-y-[50%] duration-500 delay-1000;
@@ -133,7 +153,7 @@ nav {
 }
 
 .scrolled-block-down {
-  @apply flex align-top justify-between py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
+  @apply flex align-top justify-between gap-5 py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
 }
 
 .scrolled-block-name {
@@ -143,7 +163,7 @@ nav {
   @apply opacity-0;
 }
 .scrolled-block-date {
-  @apply text-3xl font-display leading-6;
+  @apply md:text-3xl font-display leading-6;
 }
 .scrolled-block-down p {
   @apply max-w-[780px];
@@ -158,10 +178,13 @@ nav {
   @apply opacity-10 saturate-20;
 }
 #main-wrapper {
-  @apply bg-bg;
+  @apply bg-bg will-change-transform;
+}
+#main.touched {
+  @apply saturate-10;
 }
 #main {
-  @apply pr-10 pl-[300px] will-change-transform max-md:px-5 max-h-svh overflow-hidden;
+  @apply pr-10 pl-[300px] duration-600 transition-all max-md:px-5 max-h-svh overflow-hidden bg-bg;
   overscroll-behavior: none; /* блокируем только внутри приложения */
   touch-action: none; /* запрещаем жесты браузера, свайп назад/вперёд и т.п. */
 }
@@ -196,7 +219,7 @@ img {
   @apply flex items-center justify-between mb-4;
 }
 .modal-body {
-  @apply relative w-full z-2 px-20 py-18 bg-bg2 flex flex-col;
+  @apply relative w-full z-2 px-5 md:px-20 py-5 md:py-18 bg-bg2 flex flex-col;
   transform: translateY(100%);
 }
 .modal-body.terms .terms {
@@ -208,7 +231,7 @@ img {
 }
 
 .modal-heading-link {
-  @apply hover:text-accent text-lg text-secondary font-display flex items-center gap-2 transition-colors;
+  @apply hover:text-accent text-[14px] md:text-lg text-secondary font-display flex items-center gap-2 transition-colors;
 }
 .modal-heading-arrow {
   @apply stroke-1 stroke-secondary transition-colors;
@@ -241,7 +264,10 @@ img {
   @apply -translate-x-0 opacity-100;
 }
 .modal-body .policy {
-  @apply translate-x-10 opacity-0;
+  @apply -translate-x-[80%] md:translate-x-10 opacity-0;
+}
+.modal-body .policy.active {
+  @apply max-md:-translate-x-full;
 }
 .modal-body-close {
   @apply absolute top-full left-[50%] -translate-x-[50%];
