@@ -9,7 +9,6 @@ items.forEach((el) => {
     const { top, left, height } = e.target.getBoundingClientRect();
     const { forCopy } = e.target.dataset;
     await navigator.clipboard.writeText(forCopy);
-    console.log(left + "px");
     notify.style.left = left + "px";
     animate(notify, {
       y: [

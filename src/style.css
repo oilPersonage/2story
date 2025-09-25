@@ -6,12 +6,19 @@ body {
 }
 
 @theme {
-  --font-sans: "Source Sans 3";
-  --font-display: "Playfair Display SC";
+  /* --font-sans: "Source Sans 3"; */
+  --font-sans: "Arimo";
+  /* --font-display: "Playfair Display SC"; */
+  --font-display: "Cinzel";
+  /* --font-display: "Abril Fatface"; */
+  /* --font-display: "Cal Sans"; */
+  /* --font-display: "Spectral SC"; */
+  /* --font-display: "Wire One"; */
 
   --color-bg: #fbfbfb;
-  --color-text: #2b2b2b;
-  --color-secondary: #b9b2aa;
+  /* --color-text: #2b2b2b; */
+  --color-text: #2b2622;
+  --color-secondary: #c3bcb4;
   --color-bg2: #f1f1f1;
   --color-accent: #958617;
 
@@ -21,6 +28,10 @@ body {
 @layer base {
   :root {
     --base: 1rem;
+  }
+
+  * {
+    user-select: none;
   }
 
   @media screen and (max-width: 460px) {
@@ -41,7 +52,7 @@ body {
   }
 
   h2 {
-    @apply font-display;
+    @apply font-display tracking-tight;
     font-size: 6.85rem; /* fallback */
     font-size: calc(var(--base) * pow(var(--ratio), 4));
     font-weight: bold;
@@ -74,7 +85,7 @@ body {
     font-weight: bold;
   }
   p {
-    @apply font-[300] max-sm:text-sm;
+    @apply max-sm:text-sm;
   }
 }
 
@@ -84,11 +95,11 @@ body {
 } */
 
 nav {
-  @apply relative *:py-0.5 md:px-5 font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-0.5;
+  @apply font-bold relative *:py-0.5 md:px-5 font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-0.5;
 }
 .sidebar {
   @apply top-[50%] max-md:-translate-y-[50%] md:top-0 md:bottom-0 z-10 fixed max-md:right-0 md:left-0 md:bg-bg md:px-5 flex items-center
-    max-w-10 md:max-w-[300px] overflow-hidden cursor-pointer;
+    max-w-10 md:max-w-[300px] overflow-hidden uppercase;
 }
 .sidebar.touched a {
   @apply opacity-100;
@@ -111,7 +122,7 @@ nav {
   @apply text-accent;
 }
 .sidebar a {
-  @apply py-1.5 max-md:flex max-md:flex-row-reverse max-md:gap-2 items-center transition-all bg-white md:bg-bg max-md:px-5 max-md:opacity-0 duration-600 max-md:text-right;
+  @apply py-1.5 max-md:flex max-md:flex-row-reverse max-md:gap-2 cursor-pointer items-center transition-all bg-white md:bg-bg max-md:px-5 max-md:opacity-0 duration-600 max-md:text-right;
 }
 .sidebar a:not(.active) {
   /* @apply max-md:text-sm; */
@@ -120,7 +131,7 @@ nav {
   @apply max-md:hidden;
 }
 .link-dot {
-  @apply absolute left-2 top-4 w-1 h-1 bg-accent rounded-lg max-md:hidden;
+  @apply absolute left-2 top-[14px] w-1 h-1 bg-accent rounded-lg max-md:hidden;
 }
 
 .helper {
@@ -135,6 +146,66 @@ nav {
 
 .block-wrapper {
   @apply w-full h-full;
+}
+.scrolled .scrolled-block .head-1-img {
+  @apply opacity-0;
+}
+.head-1-img,
+.head-2-img {
+  @apply absolute inset-0 transition-opacity duration-600;
+}
+.head-1-img {
+  @apply opacity-100;
+}
+.head-2-img {
+  @apply opacity-0;
+}
+
+@keyframes iconAnimation {
+  0%,
+  100% {
+    transform: translateY(10px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(0) rotate(20deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes iconAnimation2 {
+  0%,
+  100% {
+    transform: translateY(10px);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(0) rotate(20deg);
+    opacity: 0.4;
+  }
+}
+
+.head-icon {
+  @apply top-[60%] left-[35%] -rotate-34 absolute;
+  animation: iconAnimation 3s ease-in-out infinite;
+}
+.head-icon1 {
+  @apply top-[80%] left-5 md:left-[20%] -rotate-10 scale-200 absolute;
+  animation: iconAnimation2 6.5s ease-in-out infinite;
+}
+.head-icon2 {
+  @apply top-[45%] left-20 md:left-[40%] -rotate-12 scale-90;
+  animation-delay: 300;
+  animation-duration: 2.5s;
+}
+
+.head-icon3 {
+  @apply top-[39%] left-[24%] md:left-[38%] -rotate-12 scale-70;
+  animation-delay: 400;
+  animation-duration: 2.1s;
+}
+.scrolled .scrolled-block .head-2-img {
+  @apply opacity-100;
 }
 .scrolled .block-wrapper {
   /* @apply saturate-0 h-[50svh]; */
@@ -153,23 +224,26 @@ nav {
 }
 
 .scrolled-block-down {
-  @apply flex align-top justify-between gap-5 py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
+  @apply flex align-top justify-between gap-5 py-10 max-md:pb-16 delay-600 opacity-100 translate-0 duration-600 transition-all;
 }
 
 .scrolled-block-name {
-  @apply py-10 delay-600 opacity-100 translate-0 duration-600 transition-all;
+  @apply pt-10 pb-7 text-accent delay-600 opacity-100 translate-0 duration-600 transition-all;
+}
+.scrolled-block-name span {
+  @apply text-text;
 }
 .scrolled-block.active .text-block {
   @apply opacity-0;
 }
 .scrolled-block-date {
-  @apply md:text-3xl font-display leading-6;
+  /* @apply; */
 }
 .scrolled-block-down p {
   @apply max-w-[780px];
 }
 .scrolled-block-wrapper {
-  @apply min-h-[100svh] max-h-[100svh] w-full;
+  @apply relative min-h-[100svh] max-h-[100svh] w-full;
   /* display: grid; */
   display: flex;
   flex-direction: column;
@@ -178,7 +252,7 @@ nav {
   @apply opacity-10 saturate-20;
 }
 #main-wrapper {
-  @apply bg-bg will-change-transform;
+  @apply will-change-transform;
 }
 #main.touched {
   @apply saturate-10;
@@ -188,17 +262,59 @@ nav {
   overscroll-behavior: none; /* блокируем только внутри приложения */
   touch-action: none; /* запрещаем жесты браузера, свайп назад/вперёд и т.п. */
 }
+.keen-navigation {
+  @apply h-full w-auto flex relative max-md:hidden;
+}
 #main video,
 img {
   aspect-ratio: 16 / 9;
   @apply h-full w-full block bg-bg2 object-cover;
+}
+.keen-slider {
+  @apply relative;
+}
+.keen-slider__slide {
+  @apply flex items-center justify-center;
+}
+.keen-dots {
+  @apply absolute right-0 -bottom-2 flex items-end gap-1;
+}
+.keen-dot {
+  @apply h-0.5 w-10 bg-secondary transition-colors duration-600;
+}
+.keen-dot.dot--active {
+  @apply bg-accent;
+}
+.keen-slider__slide {
+  @apply min-w-full w-full bg-bg2;
+}
+.keen-arrows {
+  @apply absolute -top-20 right-0 flex justify-end;
+}
+.mobile-video {
+  @apply md:hidden flex flex-col gap-2;
+}
+.arrow.arrow--disabled {
+  @apply cursor-default pointer-events-none;
+}
+.arrow:not(.arrow--disabled):hover svg {
+  @apply stroke-accent cursor-pointer;
+}
+.keen-slider-couns {
+  @apply flex justify-end gap-2 text-5xl font-display text-accent -mt-4;
+}
+.keen-slider-current {
+  /* @apply; */
+}
+.keen-slider-total {
+  @apply text-secondary;
 }
 .text-block {
   @apply font-bold text-2xl absolute left-[50%] top-[50%] -translate-[50%] opacity-100 duration-300 font-display;
 }
 
 .video-block {
-  @apply flex-1 w-full h-full  min-h-0 bg-bg;
+  @apply relative flex-1 w-full h-full  min-h-0 bg-bg;
   transition: opacity 0.6s, filter 0.6s;
 }
 
@@ -222,6 +338,9 @@ img {
   @apply relative w-full z-2 px-5 md:px-20 py-5 md:py-18 bg-bg2 flex flex-col;
   transform: translateY(100%);
 }
+.modal-body-contents {
+  @apply flex;
+}
 .modal-body.terms .terms {
   @apply block;
 }
@@ -229,7 +348,10 @@ img {
 .modal-body .terms {
   @apply hidden;
 }
-
+.modal-body .terms,
+.modal-body .policy {
+  @apply max-md:min-w-full w-[50%];
+}
 .modal-heading-link {
   @apply hover:text-accent text-[14px] md:text-lg text-secondary font-display flex items-center gap-2 transition-colors;
 }
@@ -269,10 +391,15 @@ img {
 .modal-body .policy.active {
   @apply max-md:-translate-x-full;
 }
+.modal-body-content {
+  @apply w-full flex overflow-hidden max-md:*:min-w-full md:*:max-w-[50%];
+}
 .modal-body-close {
   @apply absolute top-full left-[50%] -translate-x-[50%];
 }
-
+.contacts-links {
+  @apply flex flex-col justify-center;
+}
 .contacts-links a,
 .contacts-link svg {
   @apply transition-colors;
@@ -280,4 +407,57 @@ img {
 .contacts a:hover,
 .contacts a:hover svg {
   @apply text-accent stroke-accent;
+}
+
+.mobile-tutorial {
+  @apply md:hidden flex justify-end items-center fixed z-20 inset-0 bg-bg transition-all will-change-transform duration-500;
+}
+.mobile-wrapper {
+  @apply relative;
+}
+.mobile-block-nav {
+  @apply mr-2 w-1 rounded-xl h-[226px] bg-accent;
+}
+.mobile-tut-info {
+  @apply absolute text-right w-[120px] right-8 -top-14 text-text;
+}
+.mobile-tut-list {
+  @apply absolute top-0 right-5 flex flex-col gap-0.5;
+}
+.mobile-tut-list span {
+  @apply h-9 w-[200px] bg-secondary/20 opacity-0;
+}
+.mobile-tutorial.hide {
+  @apply translate-x-full opacity-0;
+}
+
+.sound {
+  @apply cursor-pointer fixed z-20 bottom-10 left-10 max-md:hidden;
+}
+.sound-on,
+.sound-off,
+.sound svg {
+  @apply transition-all duration-600;
+}
+.sound-on {
+  @apply -translate-y-10;
+}
+.sound.on .sound-on {
+  @apply translate-y-0;
+}
+.sound.on .sound-off {
+  @apply translate-y-10;
+}
+
+.about-us-text {
+  /* @apply; */
+}
+.about-us-text p {
+  @apply absolute bottom-0 md:bottom-5 bg-bg md:px-8 py-4 md:max-w-[70%] w-full md:w-fit left-[50%] translate-x-[-50%] opacity-0;
+}
+.about-us-text p:first-child {
+  /* @apply b; */
+}
+.about-us-counter {
+  @apply absolute -top-6 md:-bottom-6 left-1 flex  gap-1 text-sm text-secondary;
 }

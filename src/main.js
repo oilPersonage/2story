@@ -1,7 +1,10 @@
-import { animate, createTimer, utils } from "animejs";
+import { animate, createTimeline, createTimer, utils } from "animejs";
 import "./copy.js";
+import "./glide.js";
+import "./mobile-tut.js";
 import "./modal.js";
 
+const headText = [...document.querySelectorAll(".about-us-text p")];
 const sidebar = document.querySelector("#sidebar");
 const main = document.querySelector("#main");
 const mainWrapper = document.querySelector("#main-wrapper");
@@ -22,6 +25,7 @@ let maxScroll = mainWrapper.offsetHeight;
 let lastTargetId = null;
 let activeScreenIdx = 0;
 
+const isMobile = window.matchMedia("(width <= 460px)").matches;
 const linkDot = document.querySelector("nav .link-dot");
 const links = [...document.querySelectorAll("nav a")];
 const blocks = new Map();
@@ -50,8 +54,9 @@ const animateBlocks = animate(".scrolled-block", {
 function applyDotStyle(idx) {
   const { top, height } = links[idx].getBoundingClientRect();
   const { top: dTop } = linkDot.getBoundingClientRect();
+
   animate(linkDot, {
-    translateY: `+=${top + height / 2 - dTop}`,
+    translateY: `+=${top + height / 2 - dTop - 2}`,
     duration: 300,
     ease: "linear",
   });
@@ -61,13 +66,19 @@ function applyStyles() {
   const cIdx = Math.round(state.progress * (blocks.size - 1));
   if (activeScreenIdx === cIdx) return;
   const prevEl = [...blocks.values()][activeScreenIdx];
+  const prevVideo = [...prevEl.querySelectorAll("video")];
+  prevVideo.forEach((el) => el.pause());
 
   prevEl.classList.remove("active");
   links[activeScreenIdx].classList.remove("active");
 
   activeScreenIdx = cIdx;
   const el = [...blocks.values()][cIdx];
+  const currentVideo = el.querySelector(".keen-active video");
 
+  if (currentVideo && !isMobile) {
+    currentVideo.play();
+  }
   applyDotStyle(cIdx);
 
   el.classList.add("active");
@@ -144,7 +155,7 @@ window.addEventListener(
 
 // MOBILE VERSION
 
-if (window.matchMedia("(width <= 460px)").matches) {
+if (isMobile) {
   let touching = false;
   let startY = 0;
   let lastY = 0;
@@ -224,7 +235,7 @@ if (window.matchMedia("(width <= 460px)").matches) {
       offsetY *= friction;
 
       if (Math.abs(velocity) < 0.0001 && !touching) return;
-
+      velocity *= 0.9;
       applyScroll(offsetY);
       applyStyles();
     },
@@ -264,3 +275,23 @@ if (window.matchMedia("(width <= 460px)").matches) {
     // инерция автоматически применяется в onUpdate таймера
   });
 }
+
+// HEAD
+const slideCountContainer = document.querySelector(".about-us-counter-current");
+const slideTotalContainer = document.querySelector(".about-us-counter-total");
+const tl = createTimeline({ loop: true, loopDelay: 2000 });
+const textDuration = 1000;
+const textDelay = 6000;
+slideTotalContainer.innerText = headText.length;
+
+headText.forEach((el, idx) => {
+  tl.add(el, {
+    opacity: [0, 1],
+    duration: textDuration,
+    onComplete: () => (slideCountContainer.innerText = idx + 1),
+  }).add(el, {
+    opacity: [1, 0],
+    delay: idx === 0 || idx === 3 ? 10000 : textDelay,
+    duration: textDuration,
+  });
+});
