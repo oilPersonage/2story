@@ -141,16 +141,6 @@ function navigation(slider, naviationDopClassName) {
     updateClasses();
   });
 }
-let prepairedYT = null;
-window.onYouTubeIframeAPIReady = function () {
-  prepairedYT = new Map(
-    [...document.querySelectorAll("iframe")].map((el) => [
-      el.id,
-      new YT.Player(el.id),
-    ])
-  );
-  console.log(prepairedYT);
-};
 
 sliders.forEach((el) => {
   const keen = new KeenSlider(
@@ -181,24 +171,12 @@ sliders.forEach((el) => {
         prevElement.classList.remove("keen-active");
         const video = activeElement.querySelector("video");
         const prevVideo = prevElement.querySelector("video");
-        const frame = activeElement.querySelector("iframe");
-        const prevFrame = prevElement.querySelector("iframe");
-        // console.log(frame, prevFrame);
 
         if (video) {
           video.play();
         }
         if (prevVideo) {
           prevVideo.pause();
-        }
-
-        if (frame) {
-          console.log(frame, frame.id);
-
-          prepairedYT.get(frame.id).playVideo();
-        }
-        if (prevFrame) {
-          prepairedYT.get(prevFrame.id).pauseVideo();
         }
       },
     },
