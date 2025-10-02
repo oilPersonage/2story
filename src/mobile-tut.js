@@ -1,7 +1,24 @@
-import { createTimeline } from "animejs";
+import { animate, createTimeline, stagger } from "animejs";
 const items = document.querySelectorAll(".mobile-tut-list span");
 const line = document.querySelector(".mobile-block-nav");
 const wrapper = document.querySelector(".mobile-tutorial");
+
+const loaderItems = [...document.querySelectorAll(".loader path")];
+const loader = [...document.querySelectorAll(".loader")];
+let allowClick = false;
+
+const logo = animate(loaderItems, {
+  keyframes: {
+    "0%": { y: -10, scaleY: 1.1, opacity: 0, ease: "outCirc" },
+    "25%": { y: 0, scaleY: 1, opacity: 1 },
+    "75%": { y: 0, scaleY: 1, opacity: 1 },
+    "100%": { y: -10, scaleY: 1.1, opacity: 0, ease: "inCirc" },
+  },
+  delay: stagger(100),
+  loop: true,
+  loopDelay: 200,
+  duration: 2000,
+});
 
 if (window.matchMedia("(width <= 460px)").matches) {
   const tl = createTimeline({ loop: true });
@@ -27,7 +44,19 @@ if (window.matchMedia("(width <= 460px)").matches) {
     });
 
   wrapper.addEventListener("touchstart", () => {
-    wrapper.classList.add("hide");
-    setTimeout(() => tl.cancel(), 600);
+    if (!allowClick) return;
+    logo.pause();
+    animate(loader, {
+      x: [0, 10],
+      opacity: 0,
+      onComplete() {
+        wrapper.classList.add("hide");
+        setTimeout(() => tl.cancel(), 600);
+      },
+    });
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  allowClick = true;
+});
