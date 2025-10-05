@@ -6,14 +6,8 @@ body {
 }
 
 @theme {
-  /* --font-sans: "Source Sans 3"; */
   --font-sans: "Arimo";
-  /* --font-display: "Playfair Display SC"; */
   --font-display: "Cinzel";
-  /* --font-display: "Abril Fatface"; */
-  /* --font-display: "Cal Sans"; */
-  /* --font-display: "Spectral SC"; */
-  /* --font-display: "Wire One"; */
 
   --color-bg: #fbfbfb;
   /* --color-text: #2b2b2b; */

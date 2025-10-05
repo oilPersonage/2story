@@ -1,7 +1,6 @@
 import { animate, createTimeline, createTimer, utils } from "animejs";
 import "./copy.js";
 import "./glide.js";
-import "./mobile-tut.js";
 import "./modal.js";
 
 const headText = [...document.querySelectorAll(".about-us-text p")];

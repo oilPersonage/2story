@@ -5,7 +5,8 @@ const wrapper = document.querySelector(".mobile-tutorial");
 
 const loaderItems = [...document.querySelectorAll(".loader path")];
 const loader = [...document.querySelectorAll(".loader")];
-let allowClick = false;
+let time = 0;
+let FINISH_TIME = 1500;
 
 const logo = animate(loaderItems, {
   keyframes: {
@@ -43,8 +44,8 @@ if (window.matchMedia("(width <= 460px)").matches) {
       duration: 500,
     });
 
-  wrapper.addEventListener("touchstart", () => {
-    if (!allowClick) return;
+  function animateOut() {
+    // if (!allowClick) return;
     logo.pause();
     animate(loader, {
       x: [0, 10],
@@ -54,9 +55,16 @@ if (window.matchMedia("(width <= 460px)").matches) {
         setTimeout(() => tl.cancel(), 600);
       },
     });
+  }
+  let timer = setInterval((time += 10), 10);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    console.log("loaded");
+    if (time > FINISH_TIME) {
+      animateOut();
+    } else {
+      setTimeout(animateOut, FINISH_TIME - time);
+      clearInterval(timer);
+    }
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  allowClick = true;
-});
