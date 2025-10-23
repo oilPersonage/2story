@@ -5,6 +5,22 @@ body {
   overscroll-behavior: none;
 }
 
+/* Подключение шрифта Arimo */
+@font-face {
+  font-family: "Arimo";
+  src: url("/Arimo-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Cinzel";
+  src: url("/Cinzel-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-display: swap;
+}
+
 @theme {
   --font-sans: "Arimo";
   --font-display: "Cinzel";
@@ -243,8 +259,36 @@ nav {
   flex-direction: column;
 }
 .scrolled-block:not(.active) .video-block {
-  @apply opacity-10 saturate-20;
+  /* @apply saturate-0; */
 }
+.scrolled-block .video-block:after {
+  @apply transition-opacity duration-600;
+}
+.scrolled-block:not(.active) .video-block:after {
+  @apply absolute inset-0;
+  --pattern-size: 3px;
+  --pattern-color: var(--color-text);
+  content: "";
+  background-color: rgb(231 212 199 / 10%);
+  opacity: 1;
+  background-image: linear-gradient(
+      135deg,
+      var(--pattern-color) 25%,
+      transparent 25%
+    ),
+    linear-gradient(225deg, var(--pattern-color) 25%, transparent 25%),
+    linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%),
+    linear-gradient(
+      315deg,
+      var(--pattern-color) 25%,
+      rgba(255, 255, 255, 0) 25%
+    );
+  background-position: var(--pattern-size) 0, var(--pattern-size) 0, 0 0, 0 0;
+  background-size: var(--pattern-size) var(--pattern-size);
+  background-repeat: repeat;
+  background-blend-mode: color-dodge;
+}
+
 #main-wrapper {
   @apply will-change-transform;
 }
