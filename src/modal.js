@@ -8,7 +8,7 @@ const contents = new Map(
   [...document.querySelectorAll("[data-modal-content]")].map((el, i) => [
     el.dataset.modalContent,
     el,
-  ])
+  ]),
 );
 const modalOverlay = document.querySelector(".modal-overlay");
 
@@ -16,6 +16,7 @@ let currentType = "terms";
 
 const animateBody = animate(modal.querySelector(".modal-body"), {
   y: ["100%", 0],
+  opacity: [0, 1],
   autoplay: false,
 });
 const animateOver = animate(modal.querySelector(".modal-overlay"), {
@@ -41,7 +42,8 @@ function changeDocs(modalType) {
 }
 
 links.forEach((el) => {
-  el.addEventListener("click", () => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
     state.allowScroll = false;
     modal.classList.add("opened");
     changeDocs(el.dataset.modal);
@@ -51,13 +53,15 @@ links.forEach((el) => {
 });
 
 modalChangeLinks.forEach((el) => {
-  el.addEventListener("click", () => {
+  el.addEventListener("click", (e) => {
+    e.preventDefault();
     const { modalType } = el.dataset;
     changeDocs(modalType);
   });
 });
 
 modalOverlay.addEventListener("click", (e) => {
+  e.preventDefault();
   if (e.target !== modalOverlay) return;
   state.allowScroll = true;
   animateBody.reverse();

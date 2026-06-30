@@ -1,13 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/icon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <link rel="stylesheet" href="./src/style.css" />
-    <script src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.js"></script>
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+    <meta http-equiv="Cross-Origin-Embedder-Policy" content="require-corp" />
     <link
-      href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css"
+      href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Domine&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Staatliches&family=Domine&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap"
       rel="stylesheet"
     />
     <!-- Базовые мета -->
@@ -40,589 +48,923 @@
     />
     <meta name="twitter:image" content="https://2story.space/preview.jpg" />
     <script type="module" src="/src/mobile-tut.js"></script>
+    <script src="https://fast.wistia.com/player.js" async></script>
+    <script
+      src="https://fast.wistia.com/embed/ampzh4gzhp.js"
+      async
+      type="module"
+    ></script>
   </head>
   <body>
-    <div class="absolute z-[18] left-8 top-[52px] max-md:hidden">
-      <svg
-        width="414"
-        height="117"
-        class="h-6 w-auto"
-        viewBox="0 0 253 93"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 54.84V68.76H54.84V54.48H16.44C17.32 54.32 18.8 53.96 20.88 53.4C22.96 52.76 25.36 51.92 28.08 50.88C30.88 49.76 33.72 48.32 36.6 46.56C39.56 44.8 42.32 42.68 44.88 40.2C47.44 37.64 49.56 34.68 51.24 31.32C53.32 27.08 54.16 23.08 53.76 19.32C53.36 15.48 52 12.12 49.68 9.24C47.36 6.36 44.36 4.12 40.68 2.51999C37.08 0.840002 33.12 0 28.8 0C22.96 0 17.76 1.2 13.2 3.59999C8.64 5.92 5.2 9.32 2.88 13.8C0.64 18.28 0 23.68 0.96 30L16.56 32.28C15.28 25.96 15.72 21.36 17.88 18.48C20.12 15.52 23.2 14.04 27.12 14.04C29.44 14.04 31.52 14.68 33.36 15.96C35.28 17.24 36.52 19.08 37.08 21.48C37.72 23.88 37.2 26.8 35.52 30.24C34.24 32.72 32.48 35.08 30.24 37.32C28.08 39.48 25.68 41.48 23.04 43.32C20.4 45.08 17.72 46.68 15 48.12C12.36 49.56 9.88 50.76 7.56 51.72C5.32 52.68 3.52 53.44 2.16 54C0.8 54.48 0.08 54.76 0 54.84Z"
-          fill="black"
-        />
-
-        <path
-          d="M76.1468 70.1987C75.5868 70.1987 74.3867 70.1188 72.5467 69.9588C70.7867 69.8788 68.7467 69.5587 66.4267 68.9987C64.1867 68.3587 61.9867 67.3588 59.8267 65.9988C57.6667 64.6388 55.8667 62.7988 54.4267 60.4788C53.0667 58.0788 52.3867 54.9988 52.3867 51.2388H67.7467C67.7467 51.3188 67.7467 51.7188 67.7467 52.4388C67.8267 53.1588 68.0667 53.9588 68.4667 54.8388C68.9467 55.7188 69.7067 56.5187 70.7467 57.2387C71.8667 57.8787 73.5068 58.1987 75.6668 58.1987C77.5068 58.1987 78.8269 57.9587 79.6269 57.4787C80.5069 56.9987 81.0667 56.4787 81.3067 55.9187C81.5467 55.3587 81.6667 54.9188 81.6667 54.5988C81.6667 53.3988 80.9869 52.4388 79.6269 51.7188C78.2669 50.9988 76.5068 50.3588 74.3468 49.7988C72.1868 49.1588 69.8667 48.4788 67.3867 47.7588C64.9867 46.9588 62.7067 45.9588 60.5467 44.7588C58.3867 43.4788 56.6267 41.8388 55.2667 39.8388C53.9067 37.8388 53.2267 35.2788 53.2267 32.1588C53.2267 27.0388 55.1067 23.3188 58.8667 20.9988C62.7067 18.6788 67.5067 17.5188 73.2667 17.5188C76.8667 17.5188 80.1467 17.9588 83.1067 18.8388C86.0667 19.6388 88.6267 20.8788 90.7867 22.5588C92.9467 24.1588 94.6267 26.1988 95.8267 28.6788C97.1067 31.0788 97.7867 33.8787 97.8667 37.0787H82.7467C82.7467 35.7187 82.5067 34.5988 82.0267 33.7188C81.5467 32.7588 80.8668 32.0388 79.9868 31.5588C79.1868 30.9988 78.2668 30.5988 77.2268 30.3588C76.2668 30.1188 75.2268 29.9988 74.1068 29.9988C71.7868 29.9988 70.2667 30.3988 69.5467 31.1988C68.8267 31.9188 68.4667 32.6788 68.4667 33.4788C68.4667 34.9188 69.1467 36.0787 70.5067 36.9587C71.9467 37.7587 73.7469 38.4788 75.9069 39.1188C78.1469 39.7588 80.5067 40.4388 82.9867 41.1588C85.5467 41.8788 87.9067 42.8388 90.0667 44.0388C92.3067 45.1588 94.1067 46.6788 95.4667 48.5988C96.9067 50.4388 97.6267 52.8388 97.6267 55.7988C97.6267 58.9188 96.7467 61.5587 94.9867 63.7188C93.3067 65.7987 90.8667 67.3988 87.6667 68.5188C84.4667 69.6388 80.6268 70.1987 76.1468 70.1987ZM113.198 68.9987C108.398 68.9987 104.598 67.8788 101.798 65.6388C98.9976 63.3988 97.5976 59.3188 97.5976 53.3988V29.1588H113.198V56.1588H124.718V68.9987H113.198ZM90.6376 30.7188V19.3188C92.0776 19.3188 93.3576 19.1988 94.4776 18.9588C95.5976 18.6388 96.5576 18.0788 97.3576 17.2788C98.2376 16.3988 98.8776 15.1188 99.2776 13.4388C99.7576 11.7588 99.9976 9.51876 99.9976 6.71875H113.198V19.3188H124.358V30.7188H90.6376ZM145.596 70.1987C139.756 70.1987 134.876 69.1187 130.956 66.9587C127.036 64.7187 124.116 61.6787 122.196 57.8387C120.276 53.9987 119.316 49.6388 119.316 44.7588C119.316 39.7988 120.276 35.3988 122.196 31.5588C124.116 27.7188 127.036 24.7188 130.956 22.5588C134.876 20.3188 139.756 19.1988 145.596 19.1988C154.156 19.1988 160.636 21.5588 165.036 26.2788C169.516 30.9188 171.756 37.0788 171.756 44.7588C171.756 49.5588 170.796 53.8787 168.876 57.7187C167.036 61.5587 164.196 64.5987 160.356 66.8387C156.516 69.0787 151.596 70.1987 145.596 70.1987ZM145.596 56.2787C148.556 56.2787 150.756 55.6788 152.196 54.4788C153.636 53.2788 154.556 51.7588 154.956 49.9188C155.436 47.9988 155.676 46.0788 155.676 44.1588C155.676 42.1588 155.436 40.2388 154.956 38.3988C154.556 36.5588 153.636 35.0388 152.196 33.8388C150.756 32.5588 148.556 31.9187 145.596 31.9187C142.636 31.9187 140.395 32.5588 138.875 33.8388C137.435 35.0388 136.476 36.5588 135.996 38.3988C135.596 40.2388 135.396 42.1588 135.396 44.1588C135.396 46.0788 135.596 47.9988 135.996 49.9188C136.476 51.7588 137.435 53.2788 138.875 54.4788C140.395 55.6788 142.636 56.2787 145.596 56.2787ZM167.593 68.9987V19.3188H183.433L184.513 33.8388L184.393 44.6388V68.9987H167.593ZM184.393 49.1988L184.033 38.0387C183.953 36.5987 184.153 34.8388 184.633 32.7588C185.193 30.5988 186.153 28.5188 187.513 26.5188C188.953 24.4388 190.953 22.7188 193.513 21.3588C196.073 19.9988 199.313 19.3188 203.233 19.3188H204.313V37.9188H203.113C200.153 37.9188 197.473 38.0388 195.073 38.2788C192.753 38.5188 190.793 38.9988 189.193 39.7188C187.673 40.4388 186.473 41.5588 185.593 43.0788C184.793 44.5988 184.393 46.6388 184.393 49.1988ZM196.861 92.8788V80.1588H205.261C206.461 80.1588 207.581 80.0788 208.621 79.9188C209.661 79.8388 210.661 79.3188 211.621 78.3588C212.661 77.4788 213.701 75.8388 214.741 73.4388L216.181 70.0788L196.861 19.3188H214.021L224.221 53.1588L235.381 19.3188H252.541L230.101 74.7588C228.421 78.8388 226.861 82.0788 225.421 84.4788C223.981 86.8788 222.461 88.6788 220.861 89.8788C219.261 91.0788 217.421 91.8788 215.341 92.2788C213.341 92.6788 210.901 92.8788 208.021 92.8788H196.861Z"
-          fill="var(--color-accent)"
-        />
-        <defs>
-          <clipPath id="clip0_14_40">
-            <rect width="253" height="93" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
+    <div class="body-bg-img">
+      <img
+        src="/bg2-4.png"
+        class="!aspect-[9/12] object-fill! min-w-screen"
+        alt=""
+      />
+    </div>
+    <div
+      class="absolute font-display text-2xl z-[18] left-12 top-[52px] max-md:hidden pointer-events-none"
+    >
+      <img
+        class="desktop-logotype absolute z-1 -left-20 min-w-[320px] !h-[140px] !object-contain brightness-115"
+        src="/logo2.png"
+        alt="2Story Logo"
+        class=""
+      />
     </div>
     <div id="sidebar" class="sidebar">
       <div class="overflow-hidden">
         <nav>
           <span class="link-dot"></span>
-          <a data-to="story" class="active" href="#">about us</a>
-          <a data-to="hongKong" href="#">
-            HONG KONG <br />
-            <!-- <span
-              class="font-sans font-[300] md:-mt-1 flex text-secondary text-sm"
-            >
-              Danang Resort and Spa</span
-            > -->
-          </a>
-          <a data-to="insta360" href="#">Insta 360</a>
-          <a data-to="cafeVibe" href="#">Cafe Vibe</a>
-          <a data-to="ourVibe" href="#">Our Vibe</a>
-          <a data-to="contacts" href="#">contacts</a>
+
+          <a data-to="story" class="active" href="#">Lidia & Andrei</a>
+          <!-- <a data-to="interContinental" href="#">InterContinental </a> -->
+          <a data-to="radissonRed" href="#">Radisson Red </a>
+          <!-- <a data-to="unboxing" href="#">Unboxing</a>
+          <a data-to="lifestyle" href="#">Lifestyle</a>
+          <a data-to="emotions" href="#">Emotions</a> -->
+          <a data-to="social" href="#">Social</a>
         </nav>
         <p class="sidebar-menu"></p>
       </div>
       <!-- <div class="menu-btn">MENU</div> -->
     </div>
 
-    <div class="absolute z-[18] right-3 top-12 md:hidden">
-      <svg
-        width="414"
-        height="117"
-        class="h-6 w-auto"
-        viewBox="0 0 253 93"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M0 54.84V68.76H54.84V54.48H16.44C17.32 54.32 18.8 53.96 20.88 53.4C22.96 52.76 25.36 51.92 28.08 50.88C30.88 49.76 33.72 48.32 36.6 46.56C39.56 44.8 42.32 42.68 44.88 40.2C47.44 37.64 49.56 34.68 51.24 31.32C53.32 27.08 54.16 23.08 53.76 19.32C53.36 15.48 52 12.12 49.68 9.24C47.36 6.36 44.36 4.12 40.68 2.51999C37.08 0.840002 33.12 0 28.8 0C22.96 0 17.76 1.2 13.2 3.59999C8.64 5.92 5.2 9.32 2.88 13.8C0.64 18.28 0 23.68 0.96 30L16.56 32.28C15.28 25.96 15.72 21.36 17.88 18.48C20.12 15.52 23.2 14.04 27.12 14.04C29.44 14.04 31.52 14.68 33.36 15.96C35.28 17.24 36.52 19.08 37.08 21.48C37.72 23.88 37.2 26.8 35.52 30.24C34.24 32.72 32.48 35.08 30.24 37.32C28.08 39.48 25.68 41.48 23.04 43.32C20.4 45.08 17.72 46.68 15 48.12C12.36 49.56 9.88 50.76 7.56 51.72C5.32 52.68 3.52 53.44 2.16 54C0.8 54.48 0.08 54.76 0 54.84Z"
-          fill="black"
-        />
-
-        <path
-          d="M76.1468 70.1987C75.5868 70.1987 74.3867 70.1188 72.5467 69.9588C70.7867 69.8788 68.7467 69.5587 66.4267 68.9987C64.1867 68.3587 61.9867 67.3588 59.8267 65.9988C57.6667 64.6388 55.8667 62.7988 54.4267 60.4788C53.0667 58.0788 52.3867 54.9988 52.3867 51.2388H67.7467C67.7467 51.3188 67.7467 51.7188 67.7467 52.4388C67.8267 53.1588 68.0667 53.9588 68.4667 54.8388C68.9467 55.7188 69.7067 56.5187 70.7467 57.2387C71.8667 57.8787 73.5068 58.1987 75.6668 58.1987C77.5068 58.1987 78.8269 57.9587 79.6269 57.4787C80.5069 56.9987 81.0667 56.4787 81.3067 55.9187C81.5467 55.3587 81.6667 54.9188 81.6667 54.5988C81.6667 53.3988 80.9869 52.4388 79.6269 51.7188C78.2669 50.9988 76.5068 50.3588 74.3468 49.7988C72.1868 49.1588 69.8667 48.4788 67.3867 47.7588C64.9867 46.9588 62.7067 45.9588 60.5467 44.7588C58.3867 43.4788 56.6267 41.8388 55.2667 39.8388C53.9067 37.8388 53.2267 35.2788 53.2267 32.1588C53.2267 27.0388 55.1067 23.3188 58.8667 20.9988C62.7067 18.6788 67.5067 17.5188 73.2667 17.5188C76.8667 17.5188 80.1467 17.9588 83.1067 18.8388C86.0667 19.6388 88.6267 20.8788 90.7867 22.5588C92.9467 24.1588 94.6267 26.1988 95.8267 28.6788C97.1067 31.0788 97.7867 33.8787 97.8667 37.0787H82.7467C82.7467 35.7187 82.5067 34.5988 82.0267 33.7188C81.5467 32.7588 80.8668 32.0388 79.9868 31.5588C79.1868 30.9988 78.2668 30.5988 77.2268 30.3588C76.2668 30.1188 75.2268 29.9988 74.1068 29.9988C71.7868 29.9988 70.2667 30.3988 69.5467 31.1988C68.8267 31.9188 68.4667 32.6788 68.4667 33.4788C68.4667 34.9188 69.1467 36.0787 70.5067 36.9587C71.9467 37.7587 73.7469 38.4788 75.9069 39.1188C78.1469 39.7588 80.5067 40.4388 82.9867 41.1588C85.5467 41.8788 87.9067 42.8388 90.0667 44.0388C92.3067 45.1588 94.1067 46.6788 95.4667 48.5988C96.9067 50.4388 97.6267 52.8388 97.6267 55.7988C97.6267 58.9188 96.7467 61.5587 94.9867 63.7188C93.3067 65.7987 90.8667 67.3988 87.6667 68.5188C84.4667 69.6388 80.6268 70.1987 76.1468 70.1987ZM113.198 68.9987C108.398 68.9987 104.598 67.8788 101.798 65.6388C98.9976 63.3988 97.5976 59.3188 97.5976 53.3988V29.1588H113.198V56.1588H124.718V68.9987H113.198ZM90.6376 30.7188V19.3188C92.0776 19.3188 93.3576 19.1988 94.4776 18.9588C95.5976 18.6388 96.5576 18.0788 97.3576 17.2788C98.2376 16.3988 98.8776 15.1188 99.2776 13.4388C99.7576 11.7588 99.9976 9.51876 99.9976 6.71875H113.198V19.3188H124.358V30.7188H90.6376ZM145.596 70.1987C139.756 70.1987 134.876 69.1187 130.956 66.9587C127.036 64.7187 124.116 61.6787 122.196 57.8387C120.276 53.9987 119.316 49.6388 119.316 44.7588C119.316 39.7988 120.276 35.3988 122.196 31.5588C124.116 27.7188 127.036 24.7188 130.956 22.5588C134.876 20.3188 139.756 19.1988 145.596 19.1988C154.156 19.1988 160.636 21.5588 165.036 26.2788C169.516 30.9188 171.756 37.0788 171.756 44.7588C171.756 49.5588 170.796 53.8787 168.876 57.7187C167.036 61.5587 164.196 64.5987 160.356 66.8387C156.516 69.0787 151.596 70.1987 145.596 70.1987ZM145.596 56.2787C148.556 56.2787 150.756 55.6788 152.196 54.4788C153.636 53.2788 154.556 51.7588 154.956 49.9188C155.436 47.9988 155.676 46.0788 155.676 44.1588C155.676 42.1588 155.436 40.2388 154.956 38.3988C154.556 36.5588 153.636 35.0388 152.196 33.8388C150.756 32.5588 148.556 31.9187 145.596 31.9187C142.636 31.9187 140.395 32.5588 138.875 33.8388C137.435 35.0388 136.476 36.5588 135.996 38.3988C135.596 40.2388 135.396 42.1588 135.396 44.1588C135.396 46.0788 135.596 47.9988 135.996 49.9188C136.476 51.7588 137.435 53.2788 138.875 54.4788C140.395 55.6788 142.636 56.2787 145.596 56.2787ZM167.593 68.9987V19.3188H183.433L184.513 33.8388L184.393 44.6388V68.9987H167.593ZM184.393 49.1988L184.033 38.0387C183.953 36.5987 184.153 34.8388 184.633 32.7588C185.193 30.5988 186.153 28.5188 187.513 26.5188C188.953 24.4388 190.953 22.7188 193.513 21.3588C196.073 19.9988 199.313 19.3188 203.233 19.3188H204.313V37.9188H203.113C200.153 37.9188 197.473 38.0388 195.073 38.2788C192.753 38.5188 190.793 38.9988 189.193 39.7188C187.673 40.4388 186.473 41.5588 185.593 43.0788C184.793 44.5988 184.393 46.6388 184.393 49.1988ZM196.861 92.8788V80.1588H205.261C206.461 80.1588 207.581 80.0788 208.621 79.9188C209.661 79.8388 210.661 79.3188 211.621 78.3588C212.661 77.4788 213.701 75.8388 214.741 73.4388L216.181 70.0788L196.861 19.3188H214.021L224.221 53.1588L235.381 19.3188H252.541L230.101 74.7588C228.421 78.8388 226.861 82.0788 225.421 84.4788C223.981 86.8788 222.461 88.6788 220.861 89.8788C219.261 91.0788 217.421 91.8788 215.341 92.2788C213.341 92.6788 210.901 92.8788 208.021 92.8788H196.861Z"
-          fill="var(--color-accent)"
-        />
-        <defs>
-          <clipPath id="clip0_14_40">
-            <rect width="253" height="93" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
-    </div>
-    <div id="main" class="w-full max-h-svh overflow-hidden">
-      <div id="main-wrapper" class="relative">
-        <div class="grid gap-0.5">
-          <div data-name="story" class="scrolled-block block-wrapper active">
-            <div class="scrolled-block-wrapper chess">
-              <div class="text-block">ABOUT US</div>
-              <h2 class="scrolled-block-name">ABOUT US</h2>
-              <div class="video-block">
-                <img class="head-1-img" src="head-2.webp" alt="" />
-                <img class="head-2-img" src="head-1.webp" alt="" />
-                <div class="about-us-counter">
-                  <p class="about-us-counter-current">1</p>
-                  of
-                  <p class="about-us-counter-total"></p>
-                </div>
-                <div class="about-us-text">
-                  <p>
-                    Hi! <b>We’re Lidia and Andrei</b>, a couple who turned
-                    traveling and filmmaking into our lifestyle. For the past
-                    four years, we’ve been living abroad, exploring new places,
-                    and capturing them on camera. We film together, taking turns
-                    behind the lens and adding our own details to make every
-                    story unique.
-                  </p>
-                  <p>
-                    Lidia brings the magic in post-production: editing, color
-                    grading, sound design, and music.
-                  </p>
-                  <p>
-                    With her modeling background, she also knows how to shine in
-                    front of the camera.
-                  </p>
-                  <p>
-                    Andrei is the diamond cut of our projects, the one who
-                    shapes ideas and polishes every detail until it shines. He
-                    sparks concepts, draws storyboards, and makes sure each
-                    video feels alive.
-                  </p>
-                </div>
-                <div class="head-icons">
-                  <span class="head-icon">
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      class="fill-bg"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
-                        fill="inherit"
-                      />
-                    </svg>
-                  </span>
-                  <span class="head-icon head-icon2">
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      fill="none"
-                      class="fill-bg"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
-                        fill="inherit"
-                      />
-                    </svg>
-                  </span>
-                  <span class="head-icon head-icon3">
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      class="fill-bg"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
-                        fill="inherit"
-                      />
-                    </svg>
-                  </span>
-                  <span class="head-icon head-icon1">
-                    <svg
-                      width="20"
-                      height="18"
-                      viewBox="0 0 20 18"
-                      class="fill-bg"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
-                        fill="inherit"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-              <div class="scrolled-block-down">
-                <p>
-                  Together, we create videos that aren’t just about
-                  destinations, <br />
-                  they’re about the feeling of being there.
-                </p>
-                <!-- <p class="scrolled-block-date">09.25.2012</p> -->
-              </div>
+    <div class="main-perspective">
+      <div class="paper2"></div>
+      <div id="main" class="w-full min-h-svh max-h-svh">
+        <div id="main-wrapper" class="relative">
+          <img
+            class="absolute md:opacity-0 z-1 -right-2 top-7 max-w-fit !h-[64px] !object-contain"
+            src="/logo2.png"
+            alt="2Story Logo"
+            class=""
+          />
+          <div class="decor-1">
+            <div>
+              <svg
+                width="28"
+                height="25"
+                viewBox="0 0 28 25"
+                class="stroke-bg"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M27.002 23.6348H0.865234L13.9336 0.999023L27.002 23.6348Z"
+                  stroke="inherit"
+                />
+              </svg>
             </div>
           </div>
-          <div data-name="hongKong" class="scrolled-block block-wrapper">
-            <div class="scrolled-block-wrapper">
-              <div class="text-block">HONG KONG</div>
-              <h2 class="scrolled-block-name">
-                HONG KONG <span class="text-text">CITY</span>
-              </h2>
-              <div class="video-block">
-                <div class="mobile-video">
-                  <video
-                    src="HongKong264.mov"
-                    controls
-                    loop
-                    muted
-                    playsinline
-                    poster="hongCover.webp"
-                  ></video>
-                </div>
-                <div class="keen-slider">
-                  <div class="fader__slide keen-slider__slide keen-active">
-                    <video
-                      src="HongKong264.mov"
-                      loop
-                      muted
-                      playsinline
-                      poster="hongCover.webp"
-                    ></video>
-                  </div>
-                </div>
-              </div>
-              <div class="scrolled-block-down">
-                <p>
-                  Day and night in Hong Kong — a city of contrasts. Filming here
-                  was an incredible experience: the atmosphere, the vibe, and
-                  the skyline created a truly unique aesthetic.
-                </p>
-                <!-- <p class="scrolled-block-date">09.25.2012</p> -->
-              </div>
+          <div class="decor-2">
+            <div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="stroke-bg"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="11.9141"
+                  cy="11.9141"
+                  r="11.4141"
+                  stroke="inherit"
+                />
+              </svg>
             </div>
           </div>
-          <div data-name="insta360" class="scrolled-block block-wrapper">
-            <div class="scrolled-block-wrapper">
-              <div class="text-block">INSTA 360</div>
-              <h2 class="scrolled-block-name">INSTA <span>360</span></h2>
-              <div class="video-block">
-                <div class="mobile-video">
-                  <video
-                    src="insta360mp4.mov"
-                    controls
-                    loop
-                    muted
-                    playsinline
-                    poster="instaCover.webp"
-                  ></video>
-                </div>
-                <div class="keen-slider">
-                  <div class="fader__slide keen-slider__slide keen-active">
-                    <video
-                      src="insta360mp4.mov"
-                      loop
-                      muted
-                      playsinline
-                      poster="instaCover.webp"
-                    ></video>
-                  </div>
-                </div>
-              </div>
-              <div class="scrolled-block-down">
-                <p>
-                  In collaboration with Insta360, we produced a series of three
-                  videos filmed with the Insta360 Pro 2. The content not only
-                  showcased the camera’s cinematic capabilities but also
-                  resonated strongly with audiences, generating impressive views
-                  and engagement across Instagram and Threads.
-                </p>
-                <!-- <p class="scrolled-block-date">09.25.2012</p> -->
-              </div>
+          <div class="decor-3">
+            <div>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                class="stroke-bg"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="0.5"
+                  y="0.5"
+                  width="22.8281"
+                  height="22.8281"
+                  stroke="inherit"
+                />
+              </svg>
             </div>
           </div>
-          <div data-name="cafeVibe" class="scrolled-block block-wrapper">
-            <div class="scrolled-block-wrapper">
-              <div class="text-block">CAFE VIBE</div>
-              <h2 class="scrolled-block-name">CAFE VIBE</h2>
-              <div class="video-block">
-                <div class="mobile-video">
-                  <video
-                    src="9barMP4.mov"
-                    controls
-                    loop
-                    muted
-                    playsinline
-                    poster="coffeeCover.webp"
-                  ></video>
-                  <video
-                    src="tan.MP4"
-                    controls
-                    loop
-                    muted
-                    playsinline
-                    poster="tanCover.webp"
-                  ></video>
-                </div>
-                <div class="keen-slider">
-                  <div class="fader__slide keen-slider__slide keen-active">
-                    <video
-                      src="9barMP4.mov"
-                      loop
-                      muted
-                      playsinline
-                      poster="coffeeCover.webp"
-                    ></video>
-                  </div>
-                  <div class="fader__slide keen-slider__slide">
-                    <video
-                      src="tan.MP4"
-                      loop
-                      muted
-                      playsinline
-                      poster="tanCover.webp"
-                    ></video>
-                  </div>
-                </div>
-              </div>
-              <div class="scrolled-block-down">
-                <p>
-                  Experience your venue through our lens — capturing the
-                  atmosphere, the details, and the moments that make your place
-                  unique.
-                </p>
-                <p class="scrolled-block-date animate-pulse">
-                  <svg
-                    width="20"
-                    height="18"
-                    viewBox="0 0 20 18"
-                    class="fill-bg2 w-10 h-10"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
-                      fill="inherit"
-                    />
-                  </svg>
-                </p>
-              </div>
+          <div class="news-head border-2 border-text">
+            <div class="">
+              <img
+                class="!max-h-[80px] md:!max-h-[120px]"
+                src="/newYork.png"
+                alt=""
+              />
+            </div>
+            <div class="h-[1px] bg-text w-full"></div>
+            <div
+              class="flex justify-between font-display *:text-[9px] md:*:text-lg px-5"
+            >
+              <p>Copyright © 1997 The New York Times</p>
+              <p class="date-now" class="uppercase"></p>
+              <p>1$ beyound the greater New York metropoli</p>
+            </div>
+            <!--<img src="/news.png" alt="">-->
+          </div>
+          <div class="news-footer border-2 border-text">
+            <div class="flex justify-between font-display text-lg px-5">
+              <p>Copyright © 1997 The New York Times</p>
+              <p class="date-now" class="uppercase"></p>
+              <p>1$ beyound the greater New York metropoli</p>
             </div>
           </div>
-          <div data-name="ourVibe" class="scrolled-block block-wrapper">
-            <div class="scrolled-block-wrapper">
-              <div class="text-block">OUR LIFE</div>
-              <h2 class="scrolled-block-name">
-                OUR LIFE <span class="text-text">IS TRAVEL</span>
-              </h2>
-              <div class="video-block">
-                <div class="mobile-video">
-                  <video
-                    src="waterFallMP4.mov"
-                    loop
-                    muted
-                    playsinline
-                    poster="waterCover.webp"
-                  ></video>
-                  <iframe
-                    class="w-full h-full max-md:min-h-[200px]"
-                    src="https://www.youtube.com/embed/_RNnCZmSbyY?si=Yvaf1Zy-y08tHS6h&enablejsapi=1"
-                    title="YouTube video player"
-                    id="_RNnCZmSbyY?si=Yvaf1Zy-y08tHS6h"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen
-                  ></iframe>
-                </div>
-                <div class="keen-slider">
-                  <div class="fader__slide keen-slider__slide keen-active">
-                    <video
-                      src="waterFallMP4.mov"
-                      loop
-                      muted
-                      playsinline
-                      poster="waterCover.webp"
-                    ></video>
+          <div class="grid gap-0.5">
+            <div data-name="story" class="scrolled-block block-wrapper active">
+              <div class="scrolled-block-wrapper chess">
+                <div class="text-block">ABOUT US</div>
+                <h2 class="scrolled-block-name">ABOUT US</h2>
+                <div class="video-block max-md:mb-40!">
+                  <img class="head-1-img" src="head-2.webp" alt="" />
+                  <img class="head-2-img" src="head-1.webp" alt="" />
+                  <div class="about-us-counter">
+                    <p class="about-us-counter-current">1</p>
+                    of
+                    <p class="about-us-counter-total"></p>
                   </div>
-                  <div class="fader__slide keen-slider__slide">
-                    <iframe
-                      class="w-full h-full"
-                      src="https://www.youtube.com/embed/_RNnCZmSbyY?si=Yvaf1Zy-y08tHS6h&enablejsapi=1"
-                      title="YouTube video player"
-                      id="_RNnCZmSbyY?si=Yvaf1Zy-y08tHS6h"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerpolicy="strict-origin-when-cross-origin"
-                      allowfullscreen
-                    ></iframe>
+                  <div class="about-us-text">
+                    <p>
+                      Hi! <b>We’re Lidia and Andrei</b>, a couple who turned
+                      traveling and filmmaking into our lifestyle. For the past
+                      four years, we’ve been living abroad, exploring new
+                      places, and capturing them on camera. We film together,
+                      taking turns behind the lens and adding our own details to
+                      make every story unique.
+                    </p>
+                    <p>
+                      Lidia brings the magic in post-production: editing, color
+                      grading, sound design, and music.
+                    </p>
+                    <p>
+                      With her modeling background, she also knows how to shine
+                      in front of the camera.
+                    </p>
+                    <p>
+                      Andrei is the diamond cut of our projects, the one who
+                      shapes ideas and polishes every detail until it shines. He
+                      sparks concepts, draws storyboards, and makes sure each
+                      video feels alive.
+                    </p>
                   </div>
-                </div>
-              </div>
-              <div class="scrolled-block-down">
-                <p>
-                  We capture stories with a balance of creativity and
-                  authenticity — blending modern aesthetics with genuine
-                  emotions. Our vibe is about finding beauty in the details and
-                  creating visuals that feel timeless yet fresh.
-                </p>
-                <!-- <p class="scrolled-block-date">09.25.2012</p> -->
-              </div>
-            </div>
-          </div>
-          <div
-            data-name="contacts"
-            class="scrolled-block h-screen flex items-center justify-center"
-          >
-            <div class="scrolled-block-wrapper">
-              <h2 class="scrolled-block-name">CONTACTS</h2>
-              <!-- <div class="video-block"> -->
-              <div class="contacts flex h-full flex-col items-center gap-20">
-                <div class="flex flex-1 w-full max-md:flex-col">
-                  <div
-                    class="flex flex-col flex-1 justify-center text-2xl gap-10"
-                  >
-                    <div class="flex flex-col gap-3">
-                      <p class="font-display text-sm text-secondary">E-MAIL</p>
-                      <div
-                        class="flex max-md:flex-col md:items-center gap-2 md:gap-5"
+                  <div class="head-icons">
+                    <span class="head-icon">
+                      <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 20 18"
+                        class="fill-bg"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
                       >
-                        <a
-                          class="flex items-center gap-2 max-md:text-lg font-normal"
-                          href="mailto:lirules.collab@gmail.com"
+                        <path
+                          d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                          fill="inherit"
+                        />
+                      </svg>
+                    </span>
+                    <span class="head-icon head-icon2">
+                      <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 20 18"
+                        fill="none"
+                        class="fill-bg"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                          fill="inherit"
+                        />
+                      </svg>
+                    </span>
+                    <span class="head-icon head-icon3">
+                      <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 20 18"
+                        class="fill-bg"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                          fill="inherit"
+                        />
+                      </svg>
+                    </span>
+                    <span class="head-icon head-icon1">
+                      <svg
+                        width="20"
+                        height="18"
+                        viewBox="0 0 20 18"
+                        class="fill-bg"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                          fill="inherit"
+                        />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <p>
+                    Together, we create videos that aren’t just about
+                    destinations, <br />
+                    they’re about the feeling of being there.
+                  </p>
+                  <!-- <p class="scrolled-block-date">09.25.2012</p> -->
+                </div>
+              </div>
+            </div>
+
+            <!-- <div
+              data-name="interContinental"
+              class="scrolled-block block-wrapper"
+            >
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">InterContinental</div>
+                <h2 class="scrolled-block-name">
+                  InterContinental.<span> Da Nang Sun Peninsula Resort</span>
+                </h2>
+                <div class="video-block">
+                  <div
+                    data-title-parent="interContinental"
+                    class="embla__viewport"
+                  >
+                    <div class="embla__container">
+                      <div class="embla__slide">
+                        <style>
+                          wistia-player[media-id="ampzh4gzhp"]:not(:defined) {
+                            background: center / contain no-repeat
+                              url("https://fast.wistia.com/embed/medias/ampzh4gzhp/swatch");
+                            display: block;
+                            padding-top: 56.25%;
+                          }
+                        </style>
+                        <wistia-player
+                          media-id="ampzh4gzhp"
+                          aspect="1.7777777777777777"
+                        ></wistia-player>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <div
+                    data-title-down="interContinental"
+                    class="animated-down-text"
+                  >
+                    <p>
+                      Day and night in Hong Kong — a city of contrasts. Filming
+                      here was an incredible experience: the atmosphere, the
+                      vibe, and the skyline created a truly unique aesthetic.
+                    </p>
+                  </div>
+                  
+                </div>
+              </div>
+            </div> -->
+
+            <div data-name="radissonRed" class="scrolled-block block-wrapper">
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">Radisson Red</div>
+                <h2 class="scrolled-block-name">
+                  Radisson Red.<span class="text-text">Da Nang</span>
+                </h2>
+                <div class="video-block">
+                  <wistia-player
+                    media-id="8cn2flurtz"
+                    aspect="1.7777777777777777"
+                  ></wistia-player>
+                </div>
+                <div class="scrolled-block-down">
+                  <p>
+                    Day and night in Hong Kong — a city of contrasts. Filming
+                    here was an incredible experience: the atmosphere, the vibe,
+                    and the skyline created a truly unique aesthetic.
+                  </p>
+                  <!-- <p class="scrolled-block-date">09.25.2012</p> -->
+                </div>
+              </div>
+            </div>
+            <!--             
+            <div data-name="unboxing" class="scrolled-block block-wrapper">
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">Unboxing</div>
+                <h2 class="scrolled-block-name">
+                  Unboxing.
+                  <span data-title="unboxing" class="animated-title">
+                    <span>Insta360</span>
+                  </span>
+                </h2>
+                <div class="video-block">
+                  <div data-title-parent="unboxing" class="embla__viewport">
+                    <div class="embla__container">
+                      <div class="embla__slide">
+                        <v-video
+                          qualities="FHD"
+                          loop
+                          name="insta360-1"
+                        ></v-video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <div data-title-down="unboxing" class="animated-down-text">
+                    <p>
+                      In collaboration with Insta360, we produced a series of
+                      three videos filmed with the Insta360 Pro 2. The content
+                      not only showcased the camera’s cinematic capabilities but
+                      also resonated strongly with audiences, generating
+                      impressive views and engagement across Instagram and
+                      Threads.
+                    </p>
+                  </div>
+                  <p class="scrolled-block-date">09.25.2012</p>
+                </div>
+              </div>
+            </div>
+            <div
+              id="lifestyle"
+              data-name="lifestyle"
+              class="scrolled-block block-wrapper"
+            >
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">Lifestyle</div>
+                <h2 class="scrolled-block-name">
+                  Lifestyle.
+                  <span data-title="lifestyle" class="animated-title">
+                    <span>Hong Kong</span>
+                    <span>China - episode 1</span>
+                    <span>9bar</span>
+                    <span>Tan.DaNang</span>
+                  </span>
+                </h2>
+                <div class="video-block">
+                  <div data-title-parent="lifestyle" class="embla__viewport">
+                    <div class="embla__container">
+                      <div class="embla__slide">
+                        <blockquote
+                          class="instagram-media"
+                          data-instgrm-captioned
+                          data-instgrm-permalink="https://www.instagram.com/reel/DXJ8HzkDJ6w/?utm_source=ig_embed&amp;utm_campaign=loading"
+                          data-instgrm-version="14"
+                          style="
+                            background: #fff;
+                            border: 0;
+                            border-radius: 3px;
+                            box-shadow:
+                              0 0 1px 0 rgba(0, 0, 0, 0.5),
+                              0 1px 10px 0 rgba(0, 0, 0, 0.15);
+                            margin: 1px;
+                            max-width: 540px;
+                            min-width: 326px;
+                            padding: 0;
+                            width: 99.375%;
+                            width: -webkit-calc(100% - 2px);
+                            width: calc(100% - 2px);
+                          "
                         >
-                          <span class="h-5 md:w-7 w-5 md:h-7">
+                          <div style="padding: 16px">
+                            <a
+                              href="https://www.instagram.com/reel/DXJ8HzkDJ6w/?utm_source=ig_embed&amp;utm_campaign=loading"
+                              style="
+                                background: #ffffff;
+                                line-height: 0;
+                                padding: 0 0;
+                                text-align: center;
+                                text-decoration: none;
+                                width: 100%;
+                              "
+                              target="_blank"
+                            >
+                              <div
+                                style="
+                                  display: flex;
+                                  flex-direction: row;
+                                  align-items: center;
+                                "
+                              >
+                                <div
+                                  style="
+                                    background-color: #f4f4f4;
+                                    border-radius: 50%;
+                                    flex-grow: 0;
+                                    height: 40px;
+                                    margin-right: 14px;
+                                    width: 40px;
+                                  "
+                                ></div>
+                                <div
+                                  style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    flex-grow: 1;
+                                    justify-content: center;
+                                  "
+                                >
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      border-radius: 4px;
+                                      flex-grow: 0;
+                                      height: 14px;
+                                      margin-bottom: 6px;
+                                      width: 100px;
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      border-radius: 4px;
+                                      flex-grow: 0;
+                                      height: 14px;
+                                      width: 60px;
+                                    "
+                                  ></div>
+                                </div>
+                              </div>
+                              <div style="padding: 19% 0"></div>
+                              <div
+                                style="
+                                  display: block;
+                                  height: 50px;
+                                  margin: 0 auto 12px;
+                                  width: 50px;
+                                "
+                              >
+                                <svg
+                                  width="50px"
+                                  height="50px"
+                                  viewBox="0 0 60 60"
+                                  version="1.1"
+                                  xmlns="https://www.w3.org/2000/svg"
+                                  xmlns:xlink="https://www.w3.org/1999/xlink"
+                                >
+                                  <g
+                                    stroke="none"
+                                    stroke-width="1"
+                                    fill="none"
+                                    fill-rule="evenodd"
+                                  >
+                                    <g
+                                      transform="translate(-511.000000, -20.000000)"
+                                      fill="#000000"
+                                    >
+                                      <g>
+                                        <path
+                                          d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"
+                                        ></path>
+                                      </g>
+                                    </g>
+                                  </g>
+                                </svg>
+                              </div>
+                              <div style="padding-top: 8px">
+                                <div
+                                  style="
+                                    color: #3897f0;
+                                    font-family: Arial, sans-serif;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 550;
+                                    line-height: 18px;
+                                  "
+                                >
+                                  View this post on Instagram
+                                </div>
+                              </div>
+                              <div style="padding: 12.5% 0"></div>
+                              <div
+                                style="
+                                  display: flex;
+                                  flex-direction: row;
+                                  margin-bottom: 14px;
+                                  align-items: center;
+                                "
+                              >
+                                <div>
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      border-radius: 50%;
+                                      height: 12.5px;
+                                      width: 12.5px;
+                                      transform: translateX(0px) translateY(7px);
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      height: 12.5px;
+                                      transform: rotate(-45deg) translateX(3px)
+                                        translateY(1px);
+                                      width: 12.5px;
+                                      flex-grow: 0;
+                                      margin-right: 14px;
+                                      margin-left: 2px;
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      border-radius: 50%;
+                                      height: 12.5px;
+                                      width: 12.5px;
+                                      transform: translateX(9px)
+                                        translateY(-18px);
+                                    "
+                                  ></div>
+                                </div>
+                                <div style="margin-left: 8px">
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      border-radius: 50%;
+                                      flex-grow: 0;
+                                      height: 20px;
+                                      width: 20px;
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      width: 0;
+                                      height: 0;
+                                      border-top: 2px solid transparent;
+                                      border-left: 6px solid #f4f4f4;
+                                      border-bottom: 2px solid transparent;
+                                      transform: translateX(16px)
+                                        translateY(-4px) rotate(30deg);
+                                    "
+                                  ></div>
+                                </div>
+                                <div style="margin-left: auto">
+                                  <div
+                                    style="
+                                      width: 0px;
+                                      border-top: 8px solid #f4f4f4;
+                                      border-right: 8px solid transparent;
+                                      transform: translateY(16px);
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      background-color: #f4f4f4;
+                                      flex-grow: 0;
+                                      height: 12px;
+                                      width: 16px;
+                                      transform: translateY(-4px);
+                                    "
+                                  ></div>
+                                  <div
+                                    style="
+                                      width: 0;
+                                      height: 0;
+                                      border-top: 8px solid #f4f4f4;
+                                      border-left: 8px solid transparent;
+                                      transform: translateY(-4px)
+                                        translateX(8px);
+                                    "
+                                  ></div>
+                                </div>
+                              </div>
+                              <div
+                                style="
+                                  display: flex;
+                                  flex-direction: column;
+                                  flex-grow: 1;
+                                  justify-content: center;
+                                  margin-bottom: 24px;
+                                "
+                              >
+                                <div
+                                  style="
+                                    background-color: #f4f4f4;
+                                    border-radius: 4px;
+                                    flex-grow: 0;
+                                    height: 14px;
+                                    margin-bottom: 6px;
+                                    width: 224px;
+                                  "
+                                ></div>
+                                <div
+                                  style="
+                                    background-color: #f4f4f4;
+                                    border-radius: 4px;
+                                    flex-grow: 0;
+                                    height: 14px;
+                                    width: 144px;
+                                  "
+                                ></div></div
+                            ></a>
+                            <p
+                              style="
+                                color: #c9c8cd;
+                                font-family: Arial, sans-serif;
+                                font-size: 14px;
+                                line-height: 17px;
+                                margin-bottom: 0;
+                                margin-top: 8px;
+                                overflow: hidden;
+                                padding: 8px 0 7px;
+                                text-align: center;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                              "
+                            >
+                              <a
+                                href="https://www.instagram.com/reel/DXJ8HzkDJ6w/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                style="
+                                  color: #c9c8cd;
+                                  font-family: Arial, sans-serif;
+                                  font-size: 14px;
+                                  font-style: normal;
+                                  font-weight: normal;
+                                  line-height: 17px;
+                                  text-decoration: none;
+                                "
+                                target="_blank"
+                                >A post shared by Li! Video creator 📹
+                                (@hey.lirules)</a
+                              >
+                            </p>
+                          </div>
+                        </blockquote>
+                      </div>
+                      <div class="embla__slide">
+                        <iframe
+                          src="https://youtu.be/Vz3aIRjn4vU"
+                          frameborder="0"
+                          allowfullscreen
+                          muted
+                        ></iframe>
+                      </div>
+                      <div class="embla__slide">
+                        <v-video qualities="4K" loop name="9bar"></v-video>
+                      </div>
+                      <div class="embla__slide">
+                        <v-video qualities="4K" loop name="tan"></v-video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <div data-title-down="lifestyle" class="animated-down-text">
+                    <p>
+                      Hong Kong's ultra-modern neon skyline feels straight out
+                      of cinema. Its energy, textures, and colors are perfect
+                      for every frame and story. We absolutely adore its
+                      futuristic magic!
+                    </p>
+                    <p>
+                      Video filmed in - Chonqing, Fenghuang. Special effect were
+                      created in Procreate Dreams
+                    </p>
+                    <p>
+                      9Bar in Hoi An is run by super cool young locals with the
+                      most authentic vibe! Every coffee and smile feels like
+                      pure Vietnam soul. We absolutely love this cozy gem!
+                    </p>
+                    <p>
+                      Tan Cafe in Da Nang is our absolute favorite—pure love in
+                      every sip! Cozy vibes and perfect coffee that warms the
+                      soul. We can't get enough of this charming spot!
+                    </p>
+                  </div>
+                  <p class="scrolled-block-date animate-pulse">
+                    <svg
+                      width="20"
+                      height="18"
+                      viewBox="0 0 20 18"
+                      class="fill-bg2 w-10 h-10"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.44 0.0999756C12.63 0.0999756 11.01 0.979976 10 2.32998C8.99 0.979976 7.37 0.0999756 5.56 0.0999756C2.49 0.0999756 0 2.59998 0 5.68998C0 6.87998 0.19 7.97998 0.52 8.99998C2.1 14 6.97 16.99 9.38 17.81C9.72 17.93 10.28 17.93 10.62 17.81C13.03 16.99 17.9 14 19.48 8.99998C19.81 7.97998 20 6.87998 20 5.68998C20 2.59998 17.51 0.0999756 14.44 0.0999756Z"
+                        fill="inherit"
+                      />
+                    </svg>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div data-name="emotions" class="scrolled-block block-wrapper">
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">EMOTIONS</div>
+                <h2 class="scrolled-block-name">
+                  EMOTIONS.
+                  <span data-title="emotions" class="animated-title">
+                    <span>HongKong</span>
+                    <span>Thailand.ChiangMai</span>
+                  </span>
+                </h2>
+                <div class="video-block">
+                  <div data-title-parent="emotions" class="embla__viewport">
+                    <div class="embla__container">
+                      <div class="embla__slide">
+                        <v-video
+                          qualities="4K"
+                          loop
+                          name="emotions-1"
+                        ></v-video>
+                      </div>
+                      <div class="embla__slide">
+                        <v-video
+                          qualities="4K"
+                          loop
+                          name="emotions-2"
+                        ></v-video>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <div data-title-down="emotions" class="animated-down-text">
+                    <p>
+                      A mini-blog about our unforgettable 10 days in Hong Kong!
+                    </p>
+                    <p>
+                      A story about visiting a magical waterfall where you can
+                      sleep in a tent and wake up to breathtaking views!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+             -->
+            <div
+              data-name="social"
+              class="scrolled-block h-screen flex items-center justify-center"
+            >
+              <div class="scrolled-block-wrapper z-2">
+                <h2 class="scrolled-block-name">SOCIAL</h2>
+                <!-- <div class="video-block"> -->
+                <div class="contacts flex h-full flex-col items-center gap-20">
+                  <div class="flex flex-1 w-full max-md:flex-col">
+                    <div
+                      class="flex flex-col flex-1 justify-center text-2xl gap-10"
+                    >
+                      <div class="flex flex-col gap-3">
+                        <p class="font-display text-sm text-secondary">
+                          E-MAIL
+                        </p>
+                        <div
+                          class="flex max-md:flex-col md:items-center gap-2 md:gap-5"
+                        >
+                          <a
+                            class="flex items-center gap-4 max-md:text-lg font-normal font-display"
+                            href="mailto:lirules.collab@gmail.com"
+                          >
                             <svg
-                              class="stroke-text stroke-1 h-full w-full"
-                              width="24"
-                              height="24"
+                              class="w-8 h-8 -mt-0.5 h-auto stroke-text stroke-2"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 46 46"
                               fill="none"
-                              viewBox="0 0 24 24"
                               xmlns="http://www.w3.org/2000/svg"
                             >
-                              <path
-                                d="M2 8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5H7"
+                              <rect
+                                x="3.5"
+                                y="3.5"
+                                width="39"
+                                height="39"
                                 stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
                               />
                               <path
-                                d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
+                                d="M42.5 12L23 31.5L3.5 12"
                                 stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                              <path
-                                d="M2 16.5H8"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              />
-                              <path
-                                d="M2 12.5H5"
-                                stroke="inherit"
-                                stroke-miterlimit="10"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
                               />
                             </svg>
-                          </span>
-                          lirules.collab@gmail.com
-                        </a>
-                        <a
-                          data-for-copy="lirules.collab@gmail.com"
-                          href="#"
-                          class="group w-fit hover:text-text transition-colors flex items-center gap-2 text-secondary bg-bg2 p-1.5 px-2 pr-3 text-sm"
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            class="w-4 h-4 fill-secondary group-hover:fill-text transition-colors"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                            lirules.collab@gmail.com
+                          </a>
+                          <a
+                            data-for-copy="lirules.collab@gmail.com"
+                            href="#"
+                            class="group w-fit hover:text-text max-md:text-sm transition-colors flex items-center gap-2 text-secondary md:p-1.5 md:px-2 pr-3"
                           >
-                            <path
-                              d="M11.1 22.75H6.9C2.99 22.75 1.25 21.01 1.25 17.1V12.9C1.25 8.99 2.99 7.25 6.9 7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V17.1C16.75 21.01 15.01 22.75 11.1 22.75ZM6.9 8.75C3.8 8.75 2.75 9.8 2.75 12.9V17.1C2.75 20.2 3.8 21.25 6.9 21.25H11.1C14.2 21.25 15.25 20.2 15.25 17.1V12.9C15.25 9.8 14.2 8.75 11.1 8.75H6.9Z"
-                              fill="inherit"
-                            />
-                            <path
-                              d="M17.1 16.75H16C15.59 16.75 15.25 16.41 15.25 16V12.9C15.25 9.8 14.2 8.75 11.1 8.75H8C7.59 8.75 7.25 8.41 7.25 8V6.9C7.25 2.99 8.99 1.25 12.9 1.25H17.1C21.01 1.25 22.75 2.99 22.75 6.9V11.1C22.75 15.01 21.01 16.75 17.1 16.75ZM16.75 15.25H17.1C20.2 15.25 21.25 14.2 21.25 11.1V6.9C21.25 3.8 20.2 2.75 17.1 2.75H12.9C9.8 2.75 8.75 3.8 8.75 6.9V7.25H11.1C15.01 7.25 16.75 8.99 16.75 12.9V15.25Z"
-                              fill="inherit"
-                            />
-                          </svg>
-                          click to copy
-                        </a>
+                            click to copy
+                          </a>
+                        </div>
                       </div>
-                    </div>
 
-                    <div class="flex flex-col gap-3">
-                      <p class="font-display text-sm text-secondary">
-                        FOLLOW US
+                      <div class="flex flex-col gap-3">
+                        <p class="font-display text-sm text-secondary">
+                          FOLLOW US
+                        </p>
+                        <div class="flex gap-2">
+                          <a
+                            target="_blank"
+                            class="w-fit"
+                            href="https://www.instagram.com/lirules/"
+                          >
+                            <svg
+                              class="w-8 -mt-0.5 h-auto stroke-text stroke-2"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 46 46"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                x="3.5"
+                                y="3.5"
+                                width="39"
+                                height="39"
+                                stroke="inherit"
+                              />
+                              <circle
+                                cx="23"
+                                cy="23"
+                                r="8.5"
+                                stroke="inherit"
+                              />
+                              <circle
+                                cx="34"
+                                cy="12"
+                                r="0.5"
+                                stroke="inherit"
+                              />
+                            </svg>
+                          </a>
+                          <a
+                            target="_blank"
+                            href="https://www.youtube.com/@lirules16"
+                          >
+                            <svg
+                              class="w-8 -mt-0.5 h-auto stroke-text stroke-2"
+                              width="30"
+                              height="30"
+                              viewBox="0 0 46 46"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <rect
+                                x="3.5"
+                                y="3.5"
+                                width="39"
+                                height="39"
+                                stroke="inherit"
+                              />
+                              <path
+                                d="M13 22.8734L28 33L28 13L13 22.8734Z"
+                                stroke="inherit"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="contacts-links">
+                      <p class="font-display text-sm text-secondary mb-3">
+                        LINKS
                       </p>
-                      <div class="flex gap-2">
-                        <a
-                          target="_blank"
-                          class="w-fit"
-                          href="https://www.instagram.com/lirules/"
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            class="h-7 w-7 stroke-text stroke-1"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
-                              stroke="inherit"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z"
-                              stroke="inherit"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M17.6361 7H17.6477"
-                              stroke="3"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </a>
-                        <a
-                          target="_blank"
-                          href="https://www.youtube.com/@lirules16"
-                        >
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            class="w-8 -mt-0.5 h-auto stroke-text stroke-1"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M17 20H7C4 20 2 18 2 15V9C2 6 4 4 7 4H17C20 4 22 6 22 9V15C22 18 20 20 17 20Z"
-                              stroke="inherit"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                            <path
-                              d="M11.4001 9.5L13.9001 11C14.8001 11.6 14.8001 12.5 13.9001 13.1L11.4001 14.6C10.4001 15.2 9.6001 14.7 9.6001 13.6V10.6C9.6001 9.3 10.4001 8.9 11.4001 9.5Z"
-                              stroke="inherit"
-                              stroke-miterlimit="10"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </a>
+                      <div class="flex flex-col gap-0.5 md:gap-1">
+                        <a data-modal="terms" href="#">Terms and Conditions</a>
+                        <a data-modal="policy" href="#">Privacy Policy</a>
                       </div>
                     </div>
                   </div>
-                  <div class="contacts-links">
-                    <p class="font-display text-sm text-secondary mb-3">
-                      LINKS
+                </div>
+                <!-- </div> -->
+                <div class="scrolled-block-down">
+                  <div class="flex -gap-1 flex-col">
+                    <p>© 2025 Lirules. All rights reserved.</p>
+                    <p class="!max-w-full">
+                      All photos and videos on this website are the property of
+                      Lirules and may not be used, reproduced, or distributed
+                      without permission.
                     </p>
-                    <div class="flex flex-col gap-0.5 md:gap-1">
-                      <a data-modal="terms" href="#">Terms and Conditions</a>
-                      <a data-modal="policy" href="#">Privacy Policy</a>
-                    </div>
                   </div>
                 </div>
+                <!-- <div class="text-block">CONTACTS</div> -->
               </div>
-              <!-- </div> -->
-              <div class="scrolled-block-down">
-                <div class="flex -gap-1 flex-col">
-                  <p>© 2025 Lirules. All rights reserved.</p>
-                  <p class="!max-w-full">
-                    All photos and videos on this website are the property of
-                    Lirules and may not be used, reproduced, or distributed
-                    without permission.
-                  </p>
-                </div>
-              </div>
-              <!-- <div class="text-block">CONTACTS</div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
+
     <div class="modal">
       <div class="modal-overlay"></div>
       <div class="modal-body">
-        <div class="modal-body-close">close</div>
         <div class="modal-heading">
           <a data-modal-type="terms" href="#" class="modal-heading-link active">
             <span>
@@ -708,64 +1050,7 @@
       <p class="notification-text">Copied</p>
       <span class="notification-close"></span>
     </div>
-    <div class="mobile-tutorial">
-      <div class="loader absolute h-16 -translate-y-[50%] top-[50%] left-5">
-        <svg
-          width="211"
-          height="76"
-          viewBox="0 0 256 123"
-          class="w-auto h-full -ml-[36px]"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            class="fill-text"
-            d="M28.7188 79.6994V68.5634C28.7828 68.4994 29.3588 68.2754 30.4468 67.8914C31.5348 67.4434 32.9748 66.8354 34.7667 66.0674C36.6228 65.2994 38.6068 64.3394 40.7188 63.1874C42.8948 62.0354 45.0388 60.7554 47.1508 59.3474C49.2628 57.8754 51.1828 56.2754 52.9108 54.5474C54.7028 52.7554 56.1108 50.8674 57.1348 48.8834C58.4788 46.1314 58.8948 43.7954 58.3828 41.8754C57.9348 39.9554 56.9428 38.4834 55.4068 37.4594C53.9348 36.4354 52.2708 35.9234 50.4148 35.9234C47.2788 35.9234 44.8148 37.1074 43.0228 39.4754C41.2948 41.7794 40.9428 45.4594 41.9668 50.5154L29.4868 48.6914C28.7188 43.6354 29.2308 39.3154 31.0228 35.7314C32.8788 32.1474 35.6307 29.4274 39.2787 27.5714C42.9268 25.6514 47.0868 24.6914 51.7588 24.6914C55.2148 24.6914 58.3827 25.3634 61.2627 26.7074C64.2067 27.9874 66.6068 29.7794 68.4628 32.0834C70.3188 34.3874 71.4068 37.0754 71.7268 40.1474C72.0468 43.1554 71.3748 46.3554 69.7108 49.7474C68.3668 52.4354 66.6708 54.8034 64.6228 56.8514C62.5748 58.8354 60.3668 60.5314 57.9988 61.9394C55.6948 63.3474 53.4228 64.4994 51.1828 65.3954C49.0068 66.2274 47.0868 66.8994 45.4228 67.4114C43.7588 67.8594 42.5747 68.1474 41.8708 68.2754H72.5908V79.6994H28.7188Z"
-            fill="black"
-          />
-          <path
-            class="fill-accent"
-            d="M90.1018 80.3706C89.6538 80.3706 88.6938 80.3066 87.2218 80.1786C85.8138 80.1146 84.1818 79.8586 82.3258 79.4106C80.5338 78.8986 78.7737 78.0986 77.0457 77.0106C75.3177 75.9226 73.8777 74.4506 72.7257 72.5946C71.6377 70.6746 71.0938 68.2106 71.0938 65.2026H83.3818C83.3818 65.2666 83.3818 65.5866 83.3818 66.1626C83.4458 66.7386 83.6378 67.3786 83.9578 68.0826C84.3418 68.7866 84.9498 69.4266 85.7818 70.0026C86.6778 70.5146 87.9898 70.7706 89.7178 70.7706C91.1898 70.7706 92.2458 70.5786 92.8857 70.1946C93.5898 69.8106 94.0378 69.3946 94.2297 68.9466C94.4218 68.4986 94.5178 68.1466 94.5178 67.8906C94.5178 66.9306 93.9738 66.1626 92.8857 65.5866C91.7978 65.0106 90.3898 64.4986 88.6618 64.0506C86.9338 63.5386 85.0778 62.9946 83.0938 62.4186C81.1738 61.7786 79.3498 60.9786 77.6217 60.0186C75.8937 58.9946 74.4857 57.6826 73.3977 56.0826C72.3097 54.4826 71.7657 52.4346 71.7657 49.9386C71.7657 45.8426 73.2698 42.8666 76.2778 41.0106C79.3498 39.1546 83.1897 38.2266 87.7978 38.2266C90.6778 38.2266 93.3018 38.5786 95.6698 39.2826C98.0378 39.9226 100.086 40.9146 101.814 42.2586C103.542 43.5386 104.886 45.1706 105.846 47.1546C106.87 49.0746 107.414 51.3146 107.478 53.8746H95.3818C95.3818 52.7866 95.1898 51.8906 94.8058 51.1866C94.4218 50.4186 93.8778 49.8426 93.1738 49.4586C92.5338 49.0106 91.7978 48.6906 90.9657 48.4986C90.1978 48.3066 89.3658 48.2106 88.4698 48.2106C86.6138 48.2106 85.3978 48.5306 84.8218 49.1706C84.2458 49.7466 83.9578 50.3546 83.9578 50.9946C83.9578 52.1466 84.5017 53.0746 85.5898 53.7786C86.7417 54.4186 88.1818 54.9946 89.9098 55.5066C91.7018 56.0186 93.5898 56.5626 95.5738 57.1386C97.6218 57.7146 99.5098 58.4826 101.238 59.4426C103.03 60.3386 104.47 61.5546 105.558 63.0906C106.71 64.5626 107.286 66.4826 107.286 68.8506C107.286 71.3466 106.582 73.4586 105.174 75.1866C103.83 76.8506 101.878 78.1306 99.3177 79.0266C96.7577 79.9226 93.6858 80.3706 90.1018 80.3706Z"
-            fill="black"
-          />
-          <path
-            class="fill-accent"
-            d="M119.802 80.3709C115.962 80.3709 112.922 79.4749 110.682 77.6829C108.442 75.8909 107.322 72.6269 107.322 67.8909V48.4989H119.802V70.0989H129.018V80.3709H119.802ZM101.754 49.7469V40.6269C102.906 40.6269 103.93 40.5309 104.826 40.3389C105.722 40.0829 106.49 39.6349 107.13 38.9949C107.834 38.2909 108.346 37.2669 108.666 35.9229C109.05 34.5789 109.242 32.7869 109.242 30.5469H119.802V40.6269H128.73V49.7469H101.754Z"
-            fill="black"
-          />
-          <path
-            class="fill-accent"
-            d="M146.044 80.3703C141.372 80.3703 137.468 79.5063 134.332 77.7783C131.196 75.9863 128.86 73.5543 127.324 70.4823C125.788 67.4103 125.02 63.9223 125.02 60.0183C125.02 56.0503 125.788 52.5303 127.324 49.4583C128.86 46.3863 131.196 43.9863 134.332 42.2583C137.468 40.4663 141.372 39.5703 146.044 39.5703C152.892 39.5703 158.076 41.4583 161.596 45.2343C165.18 48.9463 166.972 53.8743 166.972 60.0183C166.972 63.8583 166.204 67.3143 164.668 70.3863C163.196 73.4583 160.924 75.8903 157.852 77.6823C154.78 79.4743 150.844 80.3703 146.044 80.3703ZM146.044 69.2343C148.412 69.2343 150.172 68.7543 151.324 67.7943C152.476 66.8343 153.212 65.6183 153.532 64.1463C153.916 62.6103 154.108 61.0743 154.108 59.5383C154.108 57.9383 153.916 56.4023 153.532 54.9303C153.212 53.4583 152.476 52.2423 151.324 51.2823C150.172 50.2583 148.412 49.7463 146.044 49.7463C143.676 49.7463 141.884 50.2583 140.668 51.2823C139.516 52.2423 138.748 53.4583 138.364 54.9303C138.044 56.4023 137.884 57.9383 137.884 59.5383C137.884 61.0743 138.044 62.6103 138.364 64.1463C138.748 65.6183 139.516 66.8343 140.668 67.7943C141.884 68.7543 143.676 69.2343 146.044 69.2343Z"
-            fill="black"
-          />
-          <path
-            class="fill-accent"
-            d="M163.781 80.369V40.625H176.453L177.317 52.241L177.221 60.881V80.369H163.781ZM177.221 64.529L176.933 55.601C176.869 54.449 177.029 53.041 177.413 51.377C177.861 49.649 178.629 47.985 179.717 46.385C180.869 44.721 182.469 43.345 184.517 42.257C186.565 41.169 189.157 40.625 192.293 40.625H193.157V55.505H192.197C189.829 55.505 187.685 55.601 185.765 55.793C183.909 55.985 182.341 56.369 181.061 56.945C179.845 57.521 178.885 58.417 178.181 59.633C177.541 60.849 177.221 62.481 177.221 64.529Z"
-            fill="black"
-          />
-          <path
-            class="fill-accent"
-            d="M187.609 99.473V89.297H194.329C195.289 89.297 196.185 89.233 197.017 89.105C197.849 89.041 198.649 88.625 199.417 87.857C200.249 87.153 201.081 85.841 201.913 83.921L203.065 81.233L187.609 40.625H201.337L209.497 67.697L218.425 40.625H232.153L214.201 84.977C212.857 88.241 211.609 90.833 210.457 92.753C209.305 94.673 208.089 96.113 206.809 97.073C205.529 98.033 204.057 98.673 202.393 98.993C200.793 99.313 198.841 99.473 196.537 99.473H187.609Z"
-            fill="black"
-          />
-        </svg>
-        <p class="absolute bottom-1 left-0 animate-pulse text-secondary">
-          Loading...
-        </p>
-      </div>
-      <div class="mobile-wrapper">
-        <p class="mobile-tut-info">Tap and swipe to open the menu</p>
-        <div class="mobile-block-nav"></div>
-        <div class="mobile-tut-list">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
+
     <div class="sound">
       <svg
         width="25"
