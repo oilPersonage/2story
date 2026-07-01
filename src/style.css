@@ -16,7 +16,7 @@ body {
   overflow: hidden;
 }
 .body-bg-img {
-  @apply absolute inset-0 brightness-120 flex items-start opacity-35 min-h-[140vh];
+  @apply absolute inset-0 brightness-120 min-w-[1500px] flex items-start opacity-35 min-h-[140vh];
   content: "";
 }
 
@@ -306,7 +306,7 @@ nav {
   perspective: 600px;
 }
 #main-wrapper {
-  @apply will-change-transform overflow-hidden;
+  @apply will-change-transform;
 }
 #main.touched {
   @apply saturate-1;
@@ -448,15 +448,12 @@ img {
     filter 0.6s;
 }
 
-.notification {
-  @apply fixed top-6 md:top-8 w-fit max-md:translate-x-24 md:left-0 py-1.5 px-2 z-10 text-sm pointer-events-none select-none opacity-0;
-}
-.notification p {
-  @apply font-normal;
+.notification-text {
+  @apply absolute top-1.5 -right-16 font-normal opacity-0 pointer-events-none;
 }
 
 .modal {
-  @apply fixed inset-0 flex items-end pointer-events-none -z-1;
+  @apply fixed inset-0 flex items-end pointer-events-none -z-1 overflow-hidden;
 }
 .modal.opened {
   @apply z-[11] pointer-events-auto;
@@ -717,6 +714,38 @@ img {
   @apply absolute bottom-0;
 }
 
-.HoverCard {
-  display: none !important;
+@keyframes AnimateLinks {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-48px);
+  }
+  66% {
+    transform: translateX(-95px);
+  }
+}
+@keyframes AnimateHover {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  33% {
+    transform: rotate(-10deg);
+  }
+  66% {
+    transform: rotate(10deg);
+  }
+}
+
+.contacts a:hover .social-links {
+  animation: AnimateLinks 3s step-end infinite;
+}
+.social-links-wrapper {
+  @apply w-full h-full overflow-hidden relative;
+}
+.social-links-wrapper:hover {
+  animation: AnimateHover 0.3s ease-out;
+  filter: sepia(1) saturate(85) hue-rotate(65deg) brightness(1.6);
 }
