@@ -16,8 +16,11 @@ body {
   overflow: hidden;
 }
 .body-bg-img {
-  @apply absolute inset-0 brightness-120 min-w-[1500px] flex items-start opacity-35 min-h-[140vh];
+  @apply absolute inset-0 min-w-[1500px] flex items-start min-h-[140vh];
   content: "";
+}
+.body-bg-img img {
+  @apply opacity-35 transition-opacity;
 }
 
 /* Подключение шрифта Arimo */
@@ -54,7 +57,7 @@ body {
   --color-text: #2b2622;
   --color-secondary: #c3bcb4;
   --color-bg2: #f1f1f1;
-  --color-accent: #958617;
+  --color-accent: #b19209;
   --color-gray: rgba(0, 0, 0, 0.15);
   --base: 1rem; /* базовый размер текста */
   --ratio: 1.25; /* модульное соотношение */
@@ -128,6 +131,43 @@ body {
    max-w-[300px] overflow-hidden cursor-pointer;
 } */
 
+.desktop-logotype {
+  @apply absolute z-1 min-w-[150px] !h-[140px] !object-contain;
+  filter: saturate(var(--sat, 0%)) brightness(1);
+}
+.desktop-logotype-stars img {
+  @apply w-20 h-10;
+}
+.desktop-logotype-stars {
+  @apply absolute z-1 min-w-4 min-h-4 overflow-hidden opacity-0 transition-opacity;
+}
+
+@keyframes AnimateFadeIn {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  20%,
+  70% {
+    opacity: 1;
+  }
+}
+.desktop-logotype-stars:nth-child(2) {
+  @apply left-24 top-2;
+  /* animation: AnimateFadeIn 2s ease infinite; */
+}
+.desktop-logotype-stars:last-child {
+  @apply left-4 top-22;
+  /* animation: AnimateFadeIn 2s ease 0.5s infinite; */
+}
+.desktop-logotype.animated ~ .desktop-logotype-stars:nth-child(2) {
+  opacity: 1;
+  animation: AnimateFadeIn 2s ease 0.5s infinite;
+}
+.desktop-logotype.animated ~ .desktop-logotype-stars:last-child {
+  opacity: 1;
+  animation: AnimateFadeIn 2s ease infinite;
+}
 nav {
   @apply relative *:py-0.5 md:px-5 text-lg font-display md:*:block text-nowrap flex flex-col max-md:items-end max-md:gap-0.5;
 }
@@ -322,7 +362,7 @@ nav {
 }
 #main-wrapper::after {
   content: "";
-  @apply absolute -right-[80px] md:-right-[134px] top-0 bottom-[100vh] w-[134px] bg-[url('/frame.png')] opacity-0 transition-all duration-600 ease-in
+  @apply max-md:hidden absolute -right-[80px] md:-right-[134px] top-0 bottom-[100vh] w-[134px] bg-[url('/frame.png')] opacity-0 transition-all duration-600 ease-in
 	max-md:w-[60px];
   background-size: 100%;
   background-position-y: 22%;
@@ -330,7 +370,7 @@ nav {
 }
 #main-wrapper::before {
   content: "";
-  @apply absolute -left-14 max-md:-left-20 top-0 bottom-[100vh] w-[134px] bg-[url('/frame.png')] opacity-0 transition-all duration-600 ease-in
+  @apply max-md:hidden absolute -left-14 max-md:-left-20 top-0 bottom-[100vh] w-[134px] bg-[url('/frame.png')] opacity-0 transition-all duration-600 ease-in
 	max-md:w-[60px];
   background-size: 100%;
   background-blend-mode: darken;
@@ -401,6 +441,7 @@ img {
 }
 
 .embla__slide {
+  display: flex;
   flex: 0 0 100%;
   min-width: 0;
 }
@@ -467,6 +508,13 @@ img {
 }
 .modal-body-contents {
   @apply flex;
+}
+.modal-photo {
+  @apply md:pl-90 items-start;
+}
+.modal-photo .modal-body {
+  @apply bg-bg2 flex pl-5 pt-12 max-md:pb-12 pr-5 md:pr-12 pb-2 flex-col items-start min-h-dvh max-h-dvh overflow-y-auto;
+  transform: none;
 }
 .modal-body.terms .terms {
   @apply block;
@@ -748,4 +796,14 @@ img {
 .social-links-wrapper:hover {
   animation: AnimateHover 0.3s ease-out;
   filter: sepia(1) saturate(85) hue-rotate(65deg) brightness(1.6);
+}
+
+.wistia_embed .w-big-play-button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Показать при наведении */
+.wistia_embed:hover .w-big-play-button {
+  opacity: 1;
 }

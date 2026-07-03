@@ -1,8 +1,9 @@
-import { animate, createTimeline, createTimer, utils } from "animejs";
+import { animate, createTimeline, createTimer, spring, utils } from "animejs";
 import "./player.js";
 import "./copy.js";
 import "./glide.js";
 import "./modal.js";
+import "./modalPhotos.js";
 import { animatedScrollSliderText } from "./glide.js";
 
 const headText = [...document.querySelectorAll(".about-us-text p")];
@@ -50,15 +51,17 @@ const animateToShort = animate(state, {
 });
 
 const animateLogotype = animate(topLogotype, {
-  translateX: [-200, 0],
-  opacity: [0, 1],
+  // translateX: [-200, 0],
+  // opacity: [0, 1],
+  "--sat": [0, 0.8],
+  rotate: [0, 12, 0],
   duration: 600,
-  ease: "outBack(1.2)",
+  ease: "inOutElastic(1,0.3)",
   autoplay: false,
 });
 
 const animateBlocks = animate(".scrolled-block", {
-  height: [main.clientHeight, MIN_IMAGE_SIZE + "px"],
+  height: (el) => [el.clientHeight, MIN_IMAGE_SIZE + "px"],
   duration: 600,
   autoplay: false,
   onUpdate: (self) => {
@@ -124,6 +127,8 @@ if (!isMobile) {
     mainContainer.classList.add("scrolled");
     animateBlocks.play();
 
+    bodyBgImg.style.opacity = 0.66;
+    topLogotype.classList.add("animated");
     animateLogotype.play();
     main.style.transform =
       "rotateY(-5deg) rotateX(8deg) translateX(-100px) scale(0.8)";
@@ -132,7 +137,9 @@ if (!isMobile) {
   sidebar.addEventListener("mouseleave", ({ target }) => {
     const step = 1 / (blocks.size - 1);
     const nearestPosition = Math.round(state.progress / step) * step;
+    bodyBgImg.style.opacity = 0.35;
     main.classList.remove("scrolled");
+    topLogotype.classList.remove("animated");
     mainContainer.classList.remove("scrolled");
     animateBlocks.reverse();
     animateLogotype.reverse();
@@ -184,6 +191,10 @@ if (!isMobile) {
 window.addEventListener(
   "wheel",
   (e) => {
+    if (e.target.closest("[data-prevent-scroll]")) {
+      return;
+    } // block with photos
+
     e.preventDefault();
     if (!state.allowScroll) return;
     lastTargetId = null;

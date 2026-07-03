@@ -2,14 +2,7 @@ const EmblaCarousel = window.EmblaCarousel;
 import { animate, splitText, stagger } from "animejs";
 
 const sliders = [...document.querySelectorAll(".embla__viewport")];
-const soundButton = document.querySelector(".sound");
 const videos = [...document.querySelectorAll("video")];
-
-soundButton.addEventListener("click", () => {
-  soundButton.classList.toggle("on");
-  const isOn = soundButton.classList.contains("on");
-  videos.forEach((el) => (el.muted = !isOn));
-});
 
 const DOT_CLASSNAME = "embla-dot";
 const DOT_WRAPPER_CLASSNAME = "embla-dots";
@@ -112,13 +105,13 @@ sliders.forEach((el) => {
   const tName = el.getAttribute("data-title-parent");
   animList[tName] = {
     idx: undefined, // заглушка, что бы проигрывался первый вох в экран
-    list: []
+    list: [],
   };
   animListDown[tName] = {
-    list: []
+    list: [],
   };
   animList[tName].list = [
-    ...document.querySelectorAll(`[data-title="${tName}"] span`)
+    ...document.querySelectorAll(`[data-title="${tName}"] span`),
   ].map((item) => {
     const { chars, words } = splitText(item, { chars: true, words: true });
     return animate([chars, words], {
@@ -127,15 +120,15 @@ sliders.forEach((el) => {
       easing: "easeInOutQuad",
       duration: 500,
       delay: stagger(100),
-      autoplay: false
+      autoplay: false,
     });
   });
 
   animListDown[tName].list = [
-    ...document.querySelectorAll(`[data-title-down="${tName}"] p`)
+    ...document.querySelectorAll(`[data-title-down="${tName}"] p`),
   ].map((item, idx) => {
     const { words } = splitText(item, {
-      words: true
+      words: true,
     });
 
     return animate(words, {
@@ -144,7 +137,7 @@ sliders.forEach((el) => {
       easing: "easeInOutQuad",
       duration: 500,
       delay: stagger(30),
-      autoplay: idx === 0
+      autoplay: idx === 0,
     });
   });
 
@@ -152,7 +145,7 @@ sliders.forEach((el) => {
     loop: true,
     speed: 10,
     duration: 60,
-    dragFree: false
+    dragFree: false,
   });
 
   // ✅ slideChanged → select (без глюков!)
@@ -169,7 +162,7 @@ sliders.forEach((el) => {
       // ✅ ВИДЕО — пауза ТОЛЬКО активных
       const prevVideo = prevElement?.querySelector("video");
       const prevTitleSpan = [
-        ...(prevElement?.querySelectorAll(".animated-title span") || [])
+        ...(prevElement?.querySelectorAll(".animated-title span") || []),
       ];
 
       prevTitleSpan.forEach((el) => (el.style.opacity = "0"));
