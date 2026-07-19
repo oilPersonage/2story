@@ -1,31 +1,32 @@
 import { animate } from "animejs";
 
-const links = document.querySelectorAll("[data-open-photos]");
+const link = document.querySelector("[data-open-photos]");
 const modal = document.querySelector(".modal-photo");
 const closeBtn = modal.querySelector(".close-btn");
 
 const animateBody = animate(modal.querySelector(".modal-body"), {
-  y: ["100%", 0],
+  y: ["10%", 0],
+  duration: 300,
   opacity: [0, 1],
   autoplay: false,
 });
 
-links.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log("open modal", modal);
-    modal?.classList.add("opened");
-    animateBody.play();
-  });
+link.addEventListener("click", (e, idx) => {
+  e.stopPropagation();
+  e.preventDefault();
+  modal?.classList.add("opened");
+  link.classList.add("hidden");
+  animateBody.play();
 });
 
-[closeBtn, modal].forEach((el) => {
-  el.addEventListener("click", async (e) => {
-    if (!e.target === el) return;
+export const hideModalPhotoFn = async (e) => {
+  if (e) {
     e.stopPropagation();
     e.preventDefault();
-    await animateBody.reverse();
-    modal?.classList.remove("opened");
-  });
-});
+  }
+  await animateBody.reverse();
+  link.classList.remove("hidden");
+  modal?.classList.remove("opened");
+};
+
+closeBtn.addEventListener("click", async (e) => hideModalPhotoFn(e));

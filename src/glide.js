@@ -41,21 +41,35 @@ function createNavigation(embla, slider) {
   function arrowMarkup() {
     arrows = createDiv(ARROW_WRAPPER_CLASSNAME);
     arrowLeft = createDiv("arrow arrow--left");
-    arrowLeft.addEventListener("click", () => embla.scrollPrev());
-    arrowLeft.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors h-10 w-10" viewBox="0 0 31 24" fill="none">
+    arrowLeft.addEventListener("click", () => {
+      animate(arrowLeft, {
+        x: [0, -10, 0],
+        ease: "inOutCirc",
+        duration: 400,
+      });
+      embla.scrollPrev();
+    });
+    arrowLeft.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
 			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 			<path d="M27.4899 12H3.66797" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>`;
 
     arrowRight = createDiv("arrow arrow--right");
-    arrowRight.addEventListener("click", () => embla.scrollNext());
-    arrowRight.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors -scale-100 h-10 w-10" viewBox="0 0 31 24" fill="none">
+    arrowRight.addEventListener("click", () => {
+      animate(arrowRight, {
+        x: [0, 10, 0],
+        ease: "inOutCirc",
+        duration: 400,
+      });
+      embla.scrollNext();
+    });
+    arrowRight.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors -scale-100 h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
 			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 			<path d="M27.4899 12H3.66797" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>`;
-
     arrows.appendChild(arrowLeft);
     arrows.appendChild(arrowRight);
+
     slider.appendChild(arrows);
   }
 

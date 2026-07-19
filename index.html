@@ -5,7 +5,7 @@
     <link rel="icon" type="image/png" href="/icon.png" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <link rel="stylesheet" href="./src/style.css" />
     <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
@@ -47,7 +47,6 @@
       content="Professional video production for brands and hotels. We tell stories that inspire."
     />
     <meta name="twitter:image" content="https://2story.space/preview.jpg" />
-    <script type="module" src="/src/mobile-tut.js"></script>
 
     <script>
       window._wq = window._wq || [];
@@ -72,7 +71,7 @@
   <body>
     <div class="body-bg-img">
       <img
-        src="/bg2-3 2.png"
+        src="/bg.webp"
         class="!aspect-[9/12] object-fill! min-w-screen"
         alt=""
       />
@@ -103,9 +102,10 @@
           <span class="link-dot"></span>
 
           <a data-to="story" class="active" href="#">Lidia & Andrei</a>
-          <a data-to="interContinental" href="#">InterContinental </a>
           <a data-to="radissonRed" href="#">Radisson Red </a>
+          <a data-to="interContinental" href="#">InterContinental </a>
           <a data-to="insta360" href="#">Insta360</a>
+          <a data-to="enjoi" href="#">Enjoi</a>
           <a data-to="social" href="#">Social</a>
         </nav>
         <p class="sidebar-menu"></p>
@@ -115,10 +115,10 @@
 
     <div class="main-perspective">
       <div class="paper2"></div>
-      <div id="main" class="w-full min-h-svh max-h-svh">
+      <div id="main" class="w-full min-h-svh md:max-h-svh">
         <div id="main-wrapper" class="relative">
           <img
-            class="absolute md:opacity-0 z-1 -right-2 top-7 max-w-fit !h-[64px] !object-contain"
+            class="absolute md:opacity-0 z-1 -right-2 top-0 max-w-fit !h-[64px] !object-contain"
             src="/logo2.png"
             alt="2Story Logo"
             class=""
@@ -204,12 +204,17 @@
               <p>1$ beyound the greater New York metropoli</p>
             </div>
           </div>
-          <div class="grid gap-0.5">
-            <div data-name="story" class="scrolled-block block-wrapper active">
-              <div class="scrolled-block-wrapper chess">
+          <div class="grid gap-10 md:gap-0.5">
+            <div
+              data-name="story"
+              class="scrolled-block max-md:min-h-dvh block-wrapper active"
+            >
+              <div class="scrolled-block-wrapper max-md:h-full chess">
                 <div class="text-block">ABOUT US</div>
                 <h2 class="scrolled-block-name">ABOUT US</h2>
-                <div class="video-block max-md:mb-40!">
+                <div
+                  class="video-block flex-1 max-md:min-h-3/10! max-md:mb-40!"
+                >
                   <img class="head-1-img" src="head-2.webp" alt="" />
                   <img class="head-2-img" src="head-1.webp" alt="" />
                   <div class="about-us-counter">
@@ -307,10 +312,92 @@
                 <div class="scrolled-block-down">
                   <p>
                     Together, we create videos that aren’t just about
-                    destinations, <br />
+                    destinations, <br class="max-md:hidden" />
                     they’re about the feeling of being there.
                   </p>
                   <!-- <p class="scrolled-block-date">09.25.2012</p> -->
+                </div>
+              </div>
+            </div>
+
+            <div
+              data-name="radissonRed"
+              id="radissonRed"
+              class="scrolled-block block-wrapper"
+            >
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">Radisson Red</div>
+
+                <div class="scrolled-block-name flex flex-row! justify-between">
+                  <h2 class="w-fit text-left max-md:flex max-md:flex-col">
+                    Radisson Red.
+                    <span class="text-accent max-md:text-lg">Da Nang</span>
+                  </h2>
+
+                  <a
+                    class="hover:text-accent w-fit text-xl h-fit leading-none"
+                    href="#"
+                    data-open-photos="radisson"
+                  >
+                    Photos
+                  </a>
+                </div>
+                <div class="video-block">
+                  <wistia-player
+                    media-id="8cn2flurtz"
+                    aspect="1.7777777777777777"
+                  ></wistia-player>
+                </div>
+                <div class="scrolled-block-down">
+                  <p>
+                    Working with the Radisson RED Da Nang team was a genuine
+                    pleasure. From the very first message, the team was warm,
+                    responsive, and easy to collaborate with — the kind of
+                    people who make creative work feel effortless. The energy on
+                    property matched perfectly with what we wanted to capture on
+                    camera. Thank you for having us.
+                  </p>
+                  <!-- <p class="scrolled-block-date">09.25.2012</p> -->
+                </div>
+              </div>
+
+              <div class="modal modal-photo">
+                <div class="modal-body">
+                  <div class="flex justify-end w-full mt-2 mb-1">
+                    <a
+                      href="#"
+                      class="close-btn md:text-xl md:mt-12 md:mb-8 hover:text-accent"
+                    >
+                      Close
+                    </a>
+                  </div>
+                  <div class="flex-1 overflow-y-scroll">
+                    <div
+                      class="max-md:flex flex-col md:grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(500px,1fr))] gap-px bg-bg"
+                      data-prevent-scroll
+                    >
+                      <img src="redPh/1.webp" />
+                      <img src="redPh/3.webp" />
+                      <img src="redPh/4.webp" />
+                      <img src="redPh/5.webp" />
+                      <img src="redPh/6.webp" />
+                      <img src="redPh/7.webp" />
+                      <img src="redPh/8.webp" />
+                      <img src="redPh/9.webp" />
+                      <img src="redPh/10.webp" />
+                      <img src="redPh/11.webp" />
+                      <img src="redPh/12.webp" />
+                      <img src="redPh/13.webp" />
+                      <img src="redPh/14.webp" />
+                      <img src="redPh/15.webp" />
+                      <img src="redPh/16.webp" />
+                      <img src="redPh/17.webp" />
+                      <img src="redPh/18.webp" />
+                      <img src="redPh/19.webp" />
+                      <img src="redPh/20.webp" />
+                      <img src="redPh/21.webp" />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -325,19 +412,10 @@
                   InterContinental.<span> Da Nang Sun Peninsula Resort</span>
                 </h2>
                 <div class="video-block">
-                  <div
-                    data-title-parent="interContinental"
-                    class="embla__viewport"
-                  >
-                    <div class="embla__container">
-                      <div class="embla__slide">
-                        <wistia-player
-                          media-id="devieme25m"
-                          aspect="1.7777777777777777"
-                        ></wistia-player>
-                      </div>
-                    </div>
-                  </div>
+                  <wistia-player
+                    media-id="devieme25m"
+                    aspect="1.7777777777777777"
+                  ></wistia-player>
                 </div>
                 <div class="scrolled-block-down">
                   <div
@@ -358,60 +436,13 @@
             </div>
 
             <div
-              data-name="radissonRed"
-              id="radissonRed"
-              class="scrolled-block block-wrapper"
-            >
-              <div class="scrolled-block-wrapper">
-                <div class="text-block">Radisson Red</div>
-
-                <div class="scrolled-block-name flex flex-row! justify-between">
-                  <h2 class="w-fit text-left max-md:flex max-md:flex-col">
-                    Radisson Red.
-                    <span class="text-accent max-md:text-lg">Da Nang</span>
-                  </h2>
-
-                  <a
-                    class="hover:text-accent w-fit text-2xl"
-                    href="#"
-                    data-open-photos
-                  >
-                    Photos
-                  </a>
-                </div>
-                <div class="video-block">
-                  <div class="embla__viewport" data-title-parent="radissonRed">
-                    <div class="embla__container">
-                      <div class="embla__slide">
-                        <wistia-player
-                          media-id="8cn2flurtz"
-                          aspect="1.7777777777777777"
-                        ></wistia-player>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="scrolled-block-down">
-                  <p>
-                    Working with the Radisson RED Da Nang team was a genuine
-                    pleasure. From the very first message, the team was warm,
-                    responsive, and easy to collaborate with — the kind of
-                    people who make creative work feel effortless. The energy on
-                    property matched perfectly with what we wanted to capture on
-                    camera. Thank you for having us.
-                  </p>
-                  <!-- <p class="scrolled-block-date">09.25.2012</p> -->
-                </div>
-              </div>
-            </div>
-            <div
               id="insta360"
               data-name="insta360"
               class="scrolled-block block-wrapper"
             >
               <div class="scrolled-block-wrapper">
                 <div class="text-block">insta360</div>
-                <h2 class="scrolled-block-name">
+                <h2 class="scrolled-block-name flex-nowrap!">
                   Insta360.
                   <span data-title="luna" class="animated-title">
                     <span>Luna Ultra</span>
@@ -441,14 +472,95 @@
               </div>
             </div>
             <div
-              data-name="social"
-              class="scrolled-block h-screen flex items-center justify-center"
+              id="enjoi"
+              data-name="enjoi"
+              class="scrolled-block block-wrapper"
             >
-              <div class="scrolled-block-wrapper z-2">
+              <div class="scrolled-block-wrapper">
+                <div class="text-block">enjoi</div>
+                <h2 class="scrolled-block-name flex-nowrap!">
+                  Enjoi.
+                  <span data-title="enjoi" class="animated-title">
+                    <span>Chang Rai</span>
+                  </span>
+                  <span data-title="enjoi" class="animated-title">
+                    <span>China. Chongquing</span>
+                  </span>
+                  <span data-title="enjoi" class="animated-title">
+                    <span>Japan</span>
+                  </span>
+                  <span data-title="enjoi" class="animated-title">
+                    <span>Hong Kong</span>
+                  </span>
+                </h2>
+
+                <div class="video-block">
+                  <div class="embla__viewport" data-title-parent="enjoi">
+                    <div class="embla__container">
+                      <div class="embla__slide">
+                        <wistia-player
+                          media-id="un1nudrxnx"
+                          aspect="1.7777777777777777"
+                        ></wistia-player>
+                      </div>
+                      <div class="embla__slide">
+                        <wistia-player
+                          media-id="wlb5zkk1ko"
+                          aspect="1.7777777777777777"
+                        ></wistia-player>
+                      </div>
+                      <div class="embla__slide">
+                        <wistia-player
+                          media-id="unekaqy7ka"
+                          aspect="1.7777777777777777"
+                        ></wistia-player>
+                      </div>
+                      <div class="embla__slide">
+                        <wistia-player
+                          media-id="f9ukpnc4gs"
+                          aspect="1.7777777777777777"
+                        ></wistia-player>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="scrolled-block-down">
+                  <div data-title-down="enjoi" class="animated-down-text">
+                    <p>
+                      China in motion. Fog over mountains, neon reflections in
+                      rain-soaked streets — shot on Sony ZV-E1, cut together in
+                      Procreate Dreams.
+                    </p>
+                    <p>
+                      Chiang Rai didn't feel real. Every turn looked staged —
+                      until you remembered it wasn't.
+                    </p>
+                    <p>
+                      Japan doesn't shout its beauty. It's in the quiet — a
+                      shrine gate in the fog, neon reflected in wet asphalt, the
+                      way light falls through a paper screen.
+                    </p>
+                    <p>
+                      Hong Kong, together. Neon canyons, night markets, a city
+                      that never quite lets you catch your breath — this is what
+                      our life looked like there.
+                    </p>
+                  </div>
+                  <!-- <p class="scrolled-block-date">09.25.2012</p> -->
+                </div>
+              </div>
+            </div>
+            <div
+              data-name="social"
+              class="scrolled-block h-screen max-md:pb-10 flex items-center justify-center"
+            >
+              <div
+                class="scrolled-block-wrapper min-h-full justify-between z-2"
+              >
                 <h2 class="scrolled-block-name">SOCIAL</h2>
                 <!-- <div class="video-block"> -->
                 <div class="contacts flex h-full flex-col items-center gap-20">
-                  <div class="flex flex-1 w-full max-md:flex-col">
+                  <div class="flex flex-1 w-full max-md:flex-col gap-8">
                     <div
                       class="flex flex-col flex-1 justify-center text-2xl gap-10"
                     >
@@ -468,7 +580,7 @@
                           <a
                             data-for-copy="lirules.collab@gmail.com"
                             href="#"
-                            class="relative w-fit text-accent text-sm flex items-center gap-2 md:p-1 md:px-2 pr-3 bg-accent/20 rounded-xl"
+                            class="relative w-fit text-accent text-sm flex items-center gap-2 py-1 md:py-2 px-3 bg-accent/20 rounded-xl"
                           >
                             click to copy
                             <div class="notification-text">Copied!</div>
@@ -483,24 +595,24 @@
                         <div class="flex gap-2">
                           <a
                             target="_blank"
-                            class="w-12 h-12 relative"
+                            class="h-8 w-8 md:w-12 md:h-12 relative"
                             href="https://www.instagram.com/lirules/"
                           >
                             <div class="social-links-wrapper">
                               <img
-                                class="social-links absolute left-0 top-0.5 min-w-36 min-h-24"
+                                class="social-links absolute left-0 top-0.5 min-w-24 min-h-16 md:min-w-36 md:min-h-24"
                                 src="icons.png"
                               />
                             </div>
                           </a>
                           <a
                             target="_blank"
-                            class="w-12 h-12 relative"
+                            class="h-8 w-8 md:w-12 md:h-12 relative"
                             href="https://www.youtube.com/@lirules16"
                           >
                             <div class="social-links-wrapper">
                               <img
-                                class="social-links absolute left-0 bottom-0.5 min-w-36 min-h-24"
+                                class="social-links absolute left-0 bottom-0.5 min-w-24 min-h-16 md:min-w-36 md:min-h-24"
                                 src="icons.png"
                               />
                             </div>
@@ -619,42 +731,6 @@
             your data will be handled according to the policies of those
             services.
           </p>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal modal-photo">
-      <div class="modal-body">
-        <div class="flex justify-end w-full mb-8">
-          <a href="#" class="close-btn text-2xl hover:text-accent"> Close </a>
-        </div>
-        <div class="flex-1">
-          <div
-            class="grid grid-cols-2 md:grid-cols-[repeat(auto-fill,minmax(500px,1fr))] gap-px"
-            data-prevent-scroll
-          >
-            <img src="redPh/1.webp" />
-            <img src="redPh/2.webp" />
-            <img src="redPh/3.webp" />
-            <img src="redPh/4.webp" />
-            <img src="redPh/5.webp" />
-            <img src="redPh/6.webp" />
-            <img src="redPh/7.webp" />
-            <img src="redPh/8.webp" />
-            <img src="redPh/9.webp" />
-            <img src="redPh/10.webp" />
-            <img src="redPh/11.webp" />
-            <img src="redPh/12.webp" />
-            <img src="redPh/13.webp" />
-            <img src="redPh/14.webp" />
-            <img src="redPh/15.webp" />
-            <img src="redPh/16.webp" />
-            <img src="redPh/17.webp" />
-            <img src="redPh/18.webp" />
-            <img src="redPh/19.webp" />
-            <img src="redPh/20.webp" />
-            <img src="redPh/21.webp" />
-          </div>
         </div>
       </div>
     </div>

@@ -2,25 +2,22 @@
 
 html,
 body {
+  @apply relative md:max-h-dvh min-h-dvh bg-bg md:overflow-hidden;
   position: relative;
   overscroll-behavior: none;
   /* overflow: hidden; */
   perspective: 600px;
   perspective-origin: center center;
   isolation: isolate;
-  min-height: 100dvh;
-  max-height: 100dvh;
-  background-color: transparent;
-}
-body {
-  overflow: hidden;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 .body-bg-img {
-  @apply absolute inset-0 min-w-[1500px] flex items-start min-h-[140vh];
+  @apply absolute inset-0 md:min-w-[1500px] flex items-start min-h-full md:min-h-[140vh];
   content: "";
 }
 .body-bg-img img {
-  @apply opacity-35 transition-opacity;
+  @apply opacity-35 transition-opacity max-md:object-cover;
 }
 
 /* Подключение шрифта Arimo */
@@ -73,12 +70,12 @@ body {
 
   @media screen and (max-width: 460px) {
     :root {
-      --base: 0.65rem;
+      --base: 0.5rem;
     }
   }
 
   body {
-    @apply text-text;
+    @apply text-text relative;
   }
 
   /* Fallback + современный вариант */
@@ -89,7 +86,7 @@ body {
   }
 
   h2 {
-    @apply font-display tracking-tight;
+    @apply font-display tracking-tight max-md:leading-none;
     font-size: 6.85rem; /* fallback */
     font-size: calc(var(--base) * pow(var(--ratio), 4));
     font-weight: bold;
@@ -293,7 +290,7 @@ nav {
 }
 .scrolled .scrolled-block-name,
 .scrolled-block:not(.active) .scrolled-block-name {
-  @apply -translate-y-[40px] opacity-0 duration-300 delay-0 ease-in;
+  @apply md:-translate-y-[40px] md:opacity-0 duration-300 delay-0 ease-in;
 }
 .scrolled-block {
   @apply flex flex-col justify-center md:px-2 md:pl-20 relative overflow-hidden;
@@ -301,23 +298,23 @@ nav {
 
 .scrolled .scrolled-block-down,
 .scrolled-block:not(.active) .scrolled-block-down {
-  @apply translate-y-[40px] opacity-0 duration-300 delay-0 ease-in;
+  @apply md:translate-y-[40px] md:opacity-0 duration-300 delay-0 ease-in;
 }
 
 .scrolled-block-down {
-  @apply flex align-top justify-between gap-5 py-10 max-md:pb-16 delay-600 opacity-100 translate-0 duration-600 transition-all
+  @apply flex align-top justify-between gap-5 pt-5 md:py-10 max-md:pb-0 delay-600 opacity-100 translate-0 duration-600 transition-all
 	relative min-h-[120px];
 }
 
 .scrolled-block-name {
-  @apply mt-10 text-text mb-7 delay-600 opacity-100 translate-0 duration-600 transition-all flex md:items-center max-md:flex-col;
+  @apply w-fit my-4 md:mt-10 text-text md:mb-7 delay-600 opacity-100 translate-0 duration-600 transition-all flex md:items-center max-md:flex flex-wrap;
   mix-blend-mode: overlay;
 }
 .scrolled-block-name > span {
-  @apply text-accent max-md:text-lg max-md:-mt-1;
+  @apply text-accent max-md:text-lg max-md:-mt-1 text-nowrap;
 }
 .scrolled-block.active .text-block {
-  @apply opacity-0;
+  @apply md:opacity-0;
 }
 .scrolled-block-date {
   /* @apply; */
@@ -326,8 +323,7 @@ nav {
   @apply max-w-[1280px];
 }
 .scrolled-block-wrapper {
-  @apply relative min-h-dvh w-full;
-  /* display: grid; */
+  @apply relative md:min-h-dvh w-full;
   display: flex;
   flex-direction: column;
 }
@@ -346,7 +342,7 @@ nav {
   perspective: 600px;
 }
 #main-wrapper {
-  @apply will-change-transform;
+  @apply will-change-transform max-md:overflow-hidden;
 }
 #main.touched {
   @apply saturate-1;
@@ -376,9 +372,8 @@ nav {
   background-blend-mode: darken;
 }
 #main {
-  @apply pr-10 pl-[300px] transition-all will-change-transform duration-1000 max-md:px-5;
-  overscroll-behavior: none; /* блокируем только внутри приложения */
-  touch-action: none; /* запрещаем жесты браузера, свайп назад/вперёд и т.п. */
+  @apply pr-10 pl-[300px] transition-all will-change-transform duration-1000 max-md:px-5 md:touch-none;
+  /* overscroll-behavior: none; блокируем только внутри приложения */
 }
 .paper2 {
   @apply absolute -right-[0%] -bottom-[0%] w-[1000px] h-[1000px] bg-[url('/paper2.png')] bg-blend-color -rotate-90 opacity-20;
@@ -431,11 +426,11 @@ img {
   animation: halfAnim 10s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
 }
 .embla__viewport {
-  @apply h-full w-full;
+  @apply w-full;
   overflow: hidden;
 }
 .embla__container {
-  @apply h-full w-full relative;
+  @apply w-full relative;
   display: flex;
   touch-action: pan-y pinch-zoom;
 }
@@ -449,13 +444,13 @@ img {
   @apply absolute right-0 -bottom-2 flex items-end gap-1;
 }
 .embla-dot {
-  @apply h-0.5 w-10 bg-secondary transition-colors duration-600;
+  @apply h-0.5 w-3 md:w-10 bg-secondary transition-colors duration-600;
 }
 .embla-dot.dot--active {
   @apply bg-accent;
 }
 .embla-arrows {
-  @apply absolute -top-20 right-0 flex justify-end;
+  @apply absolute -top-10 md:-top-20 right-2 md:right-0 max-md:gap-2 flex justify-end;
 }
 .mobile-video {
   @apply md:hidden flex flex-col gap-2;
@@ -483,14 +478,14 @@ img {
 }
 
 .video-block {
-  @apply relative flex-1 w-full h-full  min-h-0;
+  @apply relative w-full h-fit min-h-0;
   transition:
     opacity 0.6s,
     filter 0.6s;
 }
 
 .notification-text {
-  @apply absolute top-1.5 -right-16 font-normal opacity-0 pointer-events-none;
+  @apply absolute md:top-2 -right-14 font-normal opacity-0 pointer-events-none;
 }
 
 .modal {
@@ -510,10 +505,10 @@ img {
   @apply flex;
 }
 .modal-photo {
-  @apply md:pl-90 items-start;
+  @apply md:pl-20 items-start absolute;
 }
 .modal-photo .modal-body {
-  @apply bg-bg2 flex pl-5 pt-12 max-md:pb-12 pr-5 md:pr-12 pb-2 flex-col items-start min-h-dvh max-h-dvh overflow-y-auto;
+  @apply bg-transparent md:pb-11!  flex p-0! max-h-[stretch] max-md:pb-12 pr-0 px-0 flex-col items-start md:min-h-dvh md:max-h-dvh;
   transform: none;
 }
 .modal-body.terms .terms {
@@ -634,7 +629,7 @@ img {
   /* @apply b; */
 }
 .about-us-counter {
-  @apply absolute -top-6 md:-bottom-6 left-1 flex  gap-1 text-sm text-secondary;
+  @apply absolute max-md:-top-5 max-md:-left-0 md:-bottom-6 left-1 flex  gap-1 text-sm text-secondary;
 }
 
 .v-video-wrapper {
@@ -672,7 +667,7 @@ img {
 }
 .news-head img,
 .news-footer {
-  @apply w-full h-full object-cover;
+  @apply w-full h-full object-cover max-md:hidden;
 }
 .scrolled .news-head,
 .touched .news-head,
@@ -751,7 +746,7 @@ img {
 }
 
 .animated-title {
-  @apply relative h-full inline-block min-w-[460px] font-display text-[40px] text-accent max-md:min-h-6;
+  @apply left-full absolute h-full inline-block font-display text-accent max-md:min-h-6 text-nowrap;
 }
 
 .animated-down-text p {
@@ -759,7 +754,7 @@ img {
 }
 
 .animated-title > span {
-  @apply absolute bottom-0;
+  @apply absolute bottom-0 max-md:leading-[1.3];
 }
 
 @keyframes AnimateLinks {
@@ -768,10 +763,10 @@ img {
     transform: translateX(0);
   }
   33% {
-    transform: translateX(-48px);
+    transform: translateX(-33.3%);
   }
   66% {
-    transform: translateX(-95px);
+    transform: translateX(-66.6%);
   }
 }
 @keyframes AnimateHover {
@@ -806,4 +801,8 @@ img {
 /* Показать при наведении */
 .wistia_embed:hover .w-big-play-button {
   opacity: 1;
+}
+
+wistia-player {
+  height: fit-content;
 }

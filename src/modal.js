@@ -3,7 +3,7 @@ import { state } from "./main";
 
 const links = [...document.querySelectorAll("[data-modal]")];
 const modalChangeLinks = [...document.querySelectorAll(".modal-heading-link")];
-const modal = document.querySelector(".modal");
+const modal = document.querySelector(".modal:not(.modal-photo)");
 const contents = new Map(
   [...document.querySelectorAll("[data-modal-content]")].map((el, i) => [
     el.dataset.modalContent,
@@ -14,6 +14,7 @@ const modalOverlay = document.querySelector(".modal-overlay");
 
 let currentType = "terms";
 
+console.log(modal.querySelector(".modal-body"));
 const animateBody = animate(modal.querySelector(".modal-body"), {
   y: ["100%", 0],
   opacity: [0, 1],
@@ -34,7 +35,6 @@ function changeDocs(modalType) {
     .querySelector(`[data-modal-type=${currentType}]`)
     .classList.remove("active");
   currentType = modalType;
-  console.log(document.querySelector(`[data-modal=${currentType}]`));
   document
     .querySelector(`[data-modal-type=${currentType}]`)
     .classList.add("active");
