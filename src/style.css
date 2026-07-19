@@ -375,9 +375,6 @@ nav {
   @apply pr-10 pl-[300px] transition-all will-change-transform duration-1000 max-md:px-5 md:touch-none;
   /* overscroll-behavior: none; блокируем только внутри приложения */
 }
-.paper2 {
-  @apply absolute -right-[0%] -bottom-[0%] w-[1000px] h-[1000px] bg-[url('/paper2.png')] bg-blend-color -rotate-90 opacity-20;
-}
 #main video,
 img {
   aspect-ratio: 16 / 9;
