@@ -51,11 +51,15 @@
     <meta name="twitter:image" content="https://2story.space/preview.jpg" />
 
     <script>
+      window.wistiaVideos = [];
       window._wq = window._wq || [];
       _wq.push({
         id: "_all",
         options: {
           playButton: false,
+        },
+        onReady: (video) => {
+          window.wistiaVideos.push(video);
         },
       });
     </script>
@@ -69,7 +73,7 @@
       async
       type="module"
     ></script>
-    <script type="module" crossorigin src="/assets/index-BDSTIDEm.js"></script>
+    <script type="module" crossorigin src="/assets/index-BxiLg9Qk.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-J9LjCbLY.css">
   </head>
   <body>
@@ -106,10 +110,10 @@
           <span class="link-dot"></span>
 
           <a data-to="story" class="active" href="#">Lidia & Andrei</a>
-          <a data-to="radissonRed" href="#">Radisson Red </a>
+          <a data-to="radissonRed" href="#">Radisson RED </a>
           <a data-to="interContinental" href="#">InterContinental </a>
           <a data-to="insta360" href="#">Insta360</a>
-          <a data-to="enjoi" href="#">Enjoi</a>
+          <a data-to="enjoy" href="#">Enjoy</a>
           <a data-to="social" href="#">Social</a>
         </nav>
         <p class="sidebar-menu"></p>
@@ -236,7 +240,7 @@
                     </p>
                     <p>
                       Lidia brings the magic in post-production: editing, color
-                      grading, sound design, and music.
+                      grading, sound design.
                     </p>
                     <p>
                       With her modeling background, she also knows how to shine
@@ -329,13 +333,13 @@
               class="scrolled-block block-wrapper"
             >
               <div class="scrolled-block-wrapper">
-                <div class="text-block">Radisson Red</div>
+                <div class="text-block">Radisson RED</div>
 
                 <div
                   class="scrolled-block-name w-full! flex flex-row! justify-between"
                 >
                   <h2 class="w-fit text-left max-md:flex max-md:flex-col">
-                    Radisson Red.
+                    Radisson RED.
                     <span class="text-accent max-md:text-lg">Da Nang</span>
                   </h2>
 
@@ -477,30 +481,30 @@
               </div>
             </div>
             <div
-              id="enjoi"
-              data-name="enjoi"
+              id="enjoy"
+              data-name="enjoy"
               class="scrolled-block block-wrapper"
             >
               <div class="scrolled-block-wrapper">
-                <div class="text-block">enjoi</div>
+                <div class="text-block">enjoy</div>
                 <h2 class="scrolled-block-name flex-nowrap!">
-                  Enjoi.
-                  <span data-title="enjoi" class="animated-title">
+                  Enjoy.
+                  <span data-title="enjoy" class="animated-title">
                     <span>Chang Rai</span>
                   </span>
-                  <span data-title="enjoi" class="animated-title">
+                  <span data-title="enjoy" class="animated-title">
                     <span>China. Chongquing</span>
                   </span>
-                  <span data-title="enjoi" class="animated-title">
+                  <span data-title="enjoy" class="animated-title">
                     <span>Japan</span>
                   </span>
-                  <span data-title="enjoi" class="animated-title">
+                  <span data-title="enjoy" class="animated-title">
                     <span>Hong Kong</span>
                   </span>
                 </h2>
 
                 <div class="video-block">
-                  <div class="embla__viewport" data-title-parent="enjoi">
+                  <div class="embla__viewport" data-title-parent="enjoy">
                     <div class="embla__container">
                       <div class="embla__slide">
                         <wistia-player
@@ -530,7 +534,7 @@
                   </div>
                 </div>
                 <div class="scrolled-block-down">
-                  <div data-title-down="enjoi" class="animated-down-text">
+                  <div data-title-down="enjoy" class="animated-down-text">
                     <p>
                       China in motion. Fog over mountains, neon reflections in
                       rain-soaked streets — shot on Sony ZV-E1, cut together in
