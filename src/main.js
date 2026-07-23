@@ -127,6 +127,10 @@ if (!isMobile) {
     main.classList.add("scrolled");
     mainContainer.classList.add("scrolled");
     animateBlocks.play();
+    if (window.wistiaVideos) {
+      // stop video
+      window.wistiaVideos.forEach((el) => el.pause());
+    }
 
     bodyBgImg.style.opacity = 0.66;
     topLogotype.classList.add("animated");
