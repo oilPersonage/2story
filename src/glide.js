@@ -8,8 +8,9 @@ const DOT_CLASSNAME = "embla-dot";
 const DOT_WRAPPER_CLASSNAME = "embla-dots";
 const ARROW_CLASSNAME = "embla-arrow";
 const ARROW_WRAPPER_CLASSNAME = "embla-arrows";
+let animatedScroll = false;
 
-// ✅ Навигация для Embla (адаптация вашего кода)
+// Навигация
 function createNavigation(embla, slider) {
   const slides = embla.slideNodes();
   let dots, arrowLeft, arrowRight, arrows;
@@ -32,7 +33,9 @@ function createNavigation(embla, slider) {
     dots = createDiv(DOT_WRAPPER_CLASSNAME);
     slides.forEach((_, idx) => {
       const dot = createDiv(DOT_CLASSNAME);
-      dot.addEventListener("click", () => embla.scrollTo(idx));
+      dot.addEventListener("click", () =>
+        !animatedScroll ? embla.scrollTo(idx) : null,
+      );
       dots.appendChild(dot);
     });
     slider.appendChild(dots);
@@ -47,7 +50,8 @@ function createNavigation(embla, slider) {
         ease: "inOutCirc",
         duration: 400,
       });
-      embla.scrollPrev();
+      if (!animatedScroll) embla.scrollPrev();
+      animatedScroll = true;
     });
     arrowLeft.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
 			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -61,7 +65,8 @@ function createNavigation(embla, slider) {
         ease: "inOutCirc",
         duration: 400,
       });
-      embla.scrollNext();
+      if (!animatedScroll) embla.scrollNext();
+      animatedScroll = true;
     });
     arrowRight.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors -scale-100 h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
 			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -99,22 +104,27 @@ let animList = {};
 let animListDown = {};
 
 export function animatedScrollSliderText(tName, nextIdx = "0") {
+  setTimeout(() => (animatedScroll = false), 1000);
   if (!animList[tName]) return;
   const prevIdx = animList[tName].idx;
-  animList[tName].list[nextIdx]?.restart();
+
+  animList[tName].list[prevIdx]?.reverse().then(() => {
+    animList[tName].list[nextIdx]?.restart();
+  });
+
   if (prevIdx === undefined) {
     animListDown[tName].list[nextIdx]?.restart();
+    animList[tName].list[nextIdx]?.restart();
     animList[tName].idx = nextIdx;
     return;
   }
-  animList[tName].list[prevIdx]?.reverse();
   animListDown[tName].list[prevIdx]?.reverse().then(() => {
     animListDown[tName].list[nextIdx]?.restart();
   });
   animList[tName].idx = nextIdx;
 }
 
-// ✅ Основной цикл слайдеров
+// Основной цикл слайдеров
 sliders.forEach((el) => {
   const tName = el.getAttribute("data-title-parent");
   animList[tName] = {
@@ -127,8 +137,8 @@ sliders.forEach((el) => {
   animList[tName].list = [
     ...document.querySelectorAll(`[data-title="${tName}"] span`),
   ].map((item) => {
-    const { chars, words } = splitText(item, { chars: true, words: true });
-    return animate([chars, words], {
+    const { words } = splitText(item, { chars: true, words: true });
+    return animate([words], {
       y: { from: 10, to: 0 },
       opacity: { from: 0, to: 1 },
       easing: "easeInOutQuad",
@@ -149,8 +159,8 @@ sliders.forEach((el) => {
       y: { from: 10, to: 0 },
       opacity: { from: 0, to: 1 },
       easing: "easeInOutQuad",
-      duration: 500,
-      delay: stagger(30),
+      duration: 300,
+      delay: stagger(10),
       autoplay: idx === 0,
     });
   });
@@ -158,22 +168,22 @@ sliders.forEach((el) => {
   const embla = EmblaCarousel(el, {
     loop: true,
     speed: 10,
-    duration: 60,
+    duration: 20,
     dragFree: false,
   });
 
-  // ✅ slideChanged → select (без глюков!)
+  // slideChanged → select
   embla.on("select", () => {
     const { slideNodes } = embla;
     const nextIdx = embla.selectedScrollSnap();
     const activeElement = slideNodes()[nextIdx];
     const prevElement = slideNodes()[animList.idx];
 
-    // ✅ АНИМАЦИИ — только при смене слайда
+    // АНИМАЦИИ — только при смене слайда
     if (nextIdx !== animList.idx) {
       animatedScrollSliderText(tName, nextIdx);
 
-      // ✅ ВИДЕО — пауза ТОЛЬКО активных
+      // ВИДЕО — пауза ТОЛЬКО активных
       const prevVideo = prevElement?.querySelector("video");
       const prevTitleSpan = [
         ...(prevElement?.querySelectorAll(".animated-title span") || []),
@@ -185,7 +195,7 @@ sliders.forEach((el) => {
       }
     }
 
-    // ✅ Классы active
+    // Классы active
     prevElement?.classList.remove("keen-active");
     activeElement?.classList.add("keen-active");
   });
