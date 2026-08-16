@@ -290,7 +290,7 @@ nav {
 }
 .scrolled .scrolled-block-name,
 .scrolled-block:not(.active) .scrolled-block-name {
-  @apply md:-translate-y-[40px] md:opacity-0 duration-300 delay-0 ease-in;
+  @apply md:-translate-y-4 md:opacity-0 duration-300 delay-0 ease-in;
 }
 .scrolled-block {
   @apply flex flex-col justify-center md:px-2 md:pl-20 relative overflow-hidden;
@@ -303,7 +303,7 @@ nav {
 
 .scrolled-block-down {
   @apply flex align-top justify-between gap-5 pt-5 md:py-10 max-md:pb-0 delay-600 opacity-100 translate-0 duration-600 transition-all
-	relative min-h-[120px];
+	relative md:min-h-[120px];
 }
 
 .scrolled-block-name {

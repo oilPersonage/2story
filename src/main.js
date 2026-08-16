@@ -71,6 +71,7 @@ if (!isMobile) {
 
     activeScreenIdx = cIdx;
     const el = [...blocks.values()][cIdx];
+    animatedScrollSliderText(el.getAttribute("data-name"));
     applyDotStyle(cIdx);
     el.classList.add("active");
     links[activeScreenIdx].classList.add("active");
