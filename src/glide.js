@@ -53,9 +53,9 @@ function createNavigation(embla, slider) {
       if (!animatedScroll) embla.scrollPrev();
       animatedScroll = true;
     });
-    arrowLeft.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
-			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-			<path d="M27.4899 12H3.66797" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    arrowLeft.innerHTML = `<svg class="text-text" viewBox="0 0 31 24" fill="none">
+			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M27.4899 12H3.66797" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>`;
 
     arrowRight = createDiv("arrow arrow--right");
@@ -68,9 +68,9 @@ function createNavigation(embla, slider) {
       if (!animatedScroll) embla.scrollNext();
       animatedScroll = true;
     });
-    arrowRight.innerHTML = `<svg width="31" height="24" class="stroke-secondary transition-colors -scale-100 h-6 md:h-10 w-6 md:w-10" viewBox="0 0 31 24" fill="none">
-			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-			<path d="M27.4899 12H3.66797" stroke="inherit" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    arrowRight.innerHTML = `<svg class="text-text -scale-100" viewBox="0 0 31 24" fill="none">
+			<path d="M9.73797 5.92969C9.73797 5.92969 8.70056 8.38726 7.5432 9.58367C6.30323 10.8655 3.66797 11.9997 3.66797 11.9997C3.66797 11.9997 6.29704 13.2057 7.5432 14.5085C8.67239 15.6891 9.73797 18.0697 9.73797 18.0697" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M27.4899 12H3.66797" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>`;
     arrows.appendChild(arrowLeft);
     arrows.appendChild(arrowRight);
@@ -127,6 +127,7 @@ export function animatedScrollSliderText(tName, nextIdx = "0") {
 // Основной цикл слайдеров
 sliders.forEach((el) => {
   const tName = el.getAttribute("data-title-parent");
+  const loop = el.dataset.loop !== 'false'
   animList[tName] = {
     idx: undefined, // заглушка, что бы проигрывался первый вох в экран
     list: [],
@@ -166,7 +167,7 @@ sliders.forEach((el) => {
   });
 
   const embla = EmblaCarousel(el, {
-    loop: true,
+    loop,
     speed: 10,
     duration: 20,
     dragFree: false,

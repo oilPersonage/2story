@@ -2,11 +2,10 @@
 
 html,
 body {
-  @apply relative md:max-h-dvh min-h-dvh bg-bg md:overflow-hidden;
+  @apply relative md:max-h-dvh min-h-dvh bg-bg md:overflow-hidden md:perspective-[600px];
   position: relative;
   overscroll-behavior: none;
   /* overflow: hidden; */
-  perspective: 600px;
   perspective-origin: center center;
   isolation: isolate;
   padding-top: env(safe-area-inset-top);
@@ -87,8 +86,8 @@ body {
 
   h2 {
     @apply font-display tracking-tight max-md:leading-none;
-    font-size: 6.85rem; /* fallback */
-    font-size: calc(var(--base) * pow(var(--ratio), 4));
+    font-size: 5.85rem; /* fallback */
+    font-size: calc(var(--base) * pow(var(--ratio), 3));
     font-weight: bold;
   }
 
@@ -293,7 +292,7 @@ nav {
   @apply md:-translate-y-4 md:opacity-0 duration-300 delay-0 ease-in;
 }
 .scrolled-block {
-  @apply flex flex-col justify-center md:px-2 md:pl-20 relative overflow-hidden;
+  @apply flex flex-col justify-center md:px-2 md:pl-20 overflow-hidden;
 }
 
 .scrolled .scrolled-block-down,
@@ -331,7 +330,7 @@ nav {
   @apply opacity-100;
 }
 .scrolled-block:not(.active) .video-block {
-  @apply saturate-0;
+  @apply md:saturate-0;
 }
 .scrolled-block .video-block:after {
   @apply transition-opacity duration-600;
@@ -446,8 +445,11 @@ img {
 .embla-dot.dot--active {
   @apply bg-accent;
 }
+.embla__viewport:hover .embla-arrows {
+  opacity: 1;
+}
 .embla-arrows {
-  @apply absolute -top-10 md:-top-20 right-2 md:right-0 max-md:gap-2 flex justify-end;
+  @apply absolute top-0 right-0 md:right-0 max-md:gap-2 flex justify-end md:opacity-0 transition-opacity bg-bg2/80;
 }
 .mobile-video {
   @apply md:hidden flex flex-col gap-2;
@@ -456,13 +458,19 @@ img {
   /*@apply cursor-default pointer-events-none opacity-0;*/
 }
 .arrow {
-  @apply transition-opacity;
+  @apply flex items-center transition-opacity py-1 px-2 md:py-2 md:px-4 w-6 h-6 md:h-8 md:w-8;
+}
+.arrow--left {
+  @apply pr-0
+}
+.arrow--right {
+  @apply pl-0
 }
 .arrow {
-  @apply cursor-pointer;
+  @apply cursor-pointer transition-colors;
 }
 .arrow:hover svg {
-  @apply stroke-accent;
+  @apply text-accent;
 }
 .keen-slider-couns {
   @apply flex justify-end gap-2 text-5xl font-display text-accent -mt-4;
@@ -480,16 +488,22 @@ img {
     opacity 0.6s,
     filter 0.6s;
 }
+.video-block-cover {
+  @apply absolute inset-0 opacity-0 z-3 pointer-events-none transition-opacity duration-600;
+}
+.video-block-cover.show {
+  @apply opacity-100;
+}
 
 .notification-text {
   @apply absolute md:top-2 -right-14 font-normal opacity-0 pointer-events-none;
 }
 
 .modal {
-  @apply fixed inset-0 flex items-end pointer-events-none -z-1 overflow-hidden;
+  @apply max-h-dvh fixed inset-0 flex items-end pointer-events-none -z-1 overflow-hidden;
 }
 .modal.opened {
-  @apply z-[11] pointer-events-auto;
+  @apply z-11 pointer-events-auto;
 }
 .modal-heading {
   @apply flex items-center justify-between mb-4;
@@ -502,10 +516,13 @@ img {
   @apply flex;
 }
 .modal-photo {
-  @apply md:pl-20 items-start absolute;
+  @apply items-start justify-end fixed inset-0 bg-black/10;
+}
+.modal-photo img {
+  @apply aspect-auto;
 }
 .modal-photo .modal-body {
-  @apply bg-transparent md:pb-11!  flex p-0! max-h-[stretch] max-md:pb-12 pr-0 px-0 flex-col items-start md:min-h-dvh md:max-h-dvh;
+  @apply py-0 md:px-12 md:pt-12 md:pr-12 flex max-h-[stretch] md:max-w-1/2 flex-col items-start min-h-dvh  max-h-dvh;
   transform: none;
 }
 .modal-body.terms .terms {
@@ -743,7 +760,10 @@ img {
 }
 
 .animated-title {
-  @apply left-full absolute h-full inline-block font-display text-accent max-md:min-h-6 text-nowrap;
+  @apply left-0 max-md:hidden absolute h-full inline-block font-display text-accent max-md:min-h-6 text-nowrap;
+}
+.animated-title:first-child span {
+  @apply max-md:opacity-100;
 }
 
 .animated-down-text p {
@@ -802,4 +822,5 @@ img {
 
 wistia-player {
   height: fit-content;
+  position: relative;
 }

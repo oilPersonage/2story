@@ -1,9 +1,9 @@
-import { animate, createTimeline, createTimer, spring, utils } from "animejs";
-import "./player.js";
+import { animate, createTimeline, utils } from "animejs";
+// import {exportPlayers} from "./player.js";
 import "./copy.js";
 import "./glide.js";
 import "./modal.js";
-import { hideModalPhotoFn } from "./modalPhotos.js";
+import "./modalPhotos.js";
 import { animatedScrollSliderText } from "./glide.js";
 
 const headText = [...document.querySelectorAll(".about-us-text p")];
@@ -16,7 +16,8 @@ const decor2 = document.querySelector(".decor-2");
 const decor3 = document.querySelector(".decor-3");
 const bodyBgImg = document.querySelector(".body-bg-img img");
 const topLogotype = document.querySelector(".desktop-logotype");
-const modalPhoto = document.querySelector(".modal-photo");
+const videoCover = document.querySelector(".video-block-cover");
+const players = [...document.querySelectorAll('wistia-player')];
 
 let animateDot = null;
 
@@ -128,15 +129,16 @@ if (!isMobile) {
     main.classList.add("scrolled");
     mainContainer.classList.add("scrolled");
     animateBlocks.play();
-    if (window.wistiaVideos) {
-      // stop video
-      window.wistiaVideos.forEach((el) => el.pause());
-    }
+    players.forEach((player) => {
+      console.log(player);
+      player.pause();
+    })
+
+    if (videoCover) videoCover.classList.add("show")
 
     bodyBgImg.style.opacity = 0.66;
     topLogotype.classList.add("animated");
     animateLogotype.play();
-    hideModalPhotoFn();
     main.style.transform =
       "rotateY(-5deg) rotateX(8deg) translateX(-100px) scale(0.8)";
   });
@@ -151,6 +153,7 @@ if (!isMobile) {
     animateBlocks.reverse();
     animateLogotype.reverse();
 
+    if (videoCover) videoCover.classList.remove("show")
     main.style.transform = "rotateY(0) translateX(0px)";
 
     animate(state, {
