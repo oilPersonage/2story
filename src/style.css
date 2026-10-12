@@ -458,7 +458,10 @@ img {
   /*@apply cursor-default pointer-events-none opacity-0;*/
 }
 .arrow {
-  @apply flex items-center transition-opacity py-1 px-2 md:py-2 md:px-4 w-6 h-6 md:h-8 md:w-8;
+  @apply flex items-center transition-opacity py-1 px-2 md:py-2 md:px-4 w-6 h-6 md:h-10! md:w-10!;
+}
+.arrow svg {
+  @apply h-full w-full stroke-text;
 }
 .arrow--left {
   @apply pr-0
@@ -470,7 +473,7 @@ img {
   @apply cursor-pointer transition-colors;
 }
 .arrow:hover svg {
-  @apply text-accent;
+  @apply stroke-accent;
 }
 .keen-slider-couns {
   @apply flex justify-end gap-2 text-5xl font-display text-accent -mt-4;
