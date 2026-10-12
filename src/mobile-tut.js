@@ -59,7 +59,6 @@ if (window.matchMedia("(width <= 460px)").matches) {
   let timer = setInterval((time += 10), 10);
 
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("loaded");
     if (time > FINISH_TIME) {
       animateOut();
     } else {

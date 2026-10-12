@@ -14,7 +14,6 @@ const modalOverlay = document.querySelector(".modal-overlay");
 
 let currentType = "terms";
 
-console.log(modal.querySelector(".modal-body"));
 const animateBody = animate(modal.querySelector(".modal-body"), {
   y: ["100%", 0],
   opacity: [0, 1],

@@ -19,12 +19,8 @@ modals.forEach(modal => {
   modalData.push(data)
 })
 
-console.log(1111, modalData)
-
-modalData.forEach(async ({link, el, anim, closeBtn}) => {
-  console.log('clicked', link)
+modalData.forEach(async ({link, el, anim, closeBtn, animBg}) => {
   link.addEventListener("click", (e, idx) => {
-    console.log('clicked', el)
     e.stopPropagation();
     e.preventDefault();
     el?.classList.add("opened");
@@ -36,11 +32,11 @@ modalData.forEach(async ({link, el, anim, closeBtn}) => {
       e.stopPropagation();
       e.preventDefault();
     }
-    await anim.reverse();
+    await anim.reverse()
     el?.classList.remove("opened");
   };
 
-  el.addEventListener("click", async (e) => {
+  el.addEventListener("click", (e) => {
     if (e.target !== el) return;
     hideModalPhotoFn(e);
   })

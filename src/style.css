@@ -12,7 +12,7 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 .body-bg-img {
-  @apply absolute inset-0 md:min-w-[1500px] flex items-start min-h-full md:min-h-[140vh];
+  @apply absolute inset-0 min-h-dvh flex items-start md:min-h-[150vh];
   content: "";
 }
 .body-bg-img img {
@@ -335,7 +335,6 @@ nav {
 .scrolled-block .video-block:after {
   @apply transition-opacity duration-600;
 }
-
 .main-perspective {
   perspective-origin: center;
   perspective: 600px;
@@ -503,10 +502,10 @@ img {
 }
 
 .modal {
-  @apply max-h-dvh fixed inset-0 flex items-end pointer-events-none -z-1 overflow-hidden;
+  @apply max-h-dvh fixed inset-0 hidden items-end pointer-events-none -z-1 overflow-hidden;
 }
 .modal.opened {
-  @apply z-11 pointer-events-auto;
+  @apply z-11 pointer-events-auto flex;
 }
 .modal-heading {
   @apply flex items-center justify-between mb-4;
@@ -519,13 +518,13 @@ img {
   @apply flex;
 }
 .modal-photo {
-  @apply items-start justify-end fixed inset-0 bg-black/10;
+  @apply items-start justify-end fixed inset-0 ;
 }
 .modal-photo img {
   @apply aspect-auto;
 }
 .modal-photo .modal-body {
-  @apply py-0 md:px-12 md:pt-12 md:pr-12 flex max-h-[stretch] md:max-w-1/2 flex-col items-start min-h-dvh  max-h-dvh;
+  @apply py-0 md:px-12 md:pt-12 md:pr-12 flex max-h-[stretch] md:max-w-1/2 flex-col items-start min-h-dvh;
   transform: none;
 }
 .modal-body.terms .terms {
@@ -826,4 +825,8 @@ img {
 wistia-player {
   height: fit-content;
   position: relative;
+}
+
+.block-with-frames {
+  contain: layout;
 }

@@ -18,6 +18,7 @@ const bodyBgImg = document.querySelector(".body-bg-img img");
 const topLogotype = document.querySelector(".desktop-logotype");
 const videoCover = document.querySelector(".video-block-cover");
 const players = [...document.querySelectorAll('wistia-player')];
+const blockWithIframes = [...document.querySelectorAll('.block-with-frames')];
 
 let animateDot = null;
 
@@ -130,12 +131,11 @@ if (!isMobile) {
     mainContainer.classList.add("scrolled");
     animateBlocks.play();
     players.forEach((player) => {
-      console.log(player);
       player.pause();
     })
 
     if (videoCover) videoCover.classList.add("show")
-
+    blockWithIframes.forEach((el => el.style.display = 'none'))
     bodyBgImg.style.opacity = 0.66;
     topLogotype.classList.add("animated");
     animateLogotype.play();
@@ -155,6 +155,7 @@ if (!isMobile) {
 
     if (videoCover) videoCover.classList.remove("show")
     main.style.transform = "rotateY(0) translateX(0px)";
+    blockWithIframes.forEach((el => el.style.display = 'grid'))
 
     animate(state, {
       progress: nearestPosition,
@@ -262,3 +263,14 @@ const dateText = `New York, ${new Date().toLocaleDateString("en-US", {
 })}, 1997`;
 const data = [...document.querySelectorAll(".date-now")];
 data.forEach((el) => (el.innerHTML = dateText));
+
+
+
+function warmImages(selector) {
+  const imgs = [...document.querySelectorAll(selector)];
+  Promise.all(imgs.map(img => img.decode().catch(() => {})));
+}
+window.addEventListener('load', () => {
+  warmImages('#main img')
+  warmImages('.modal-photo img')
+});
