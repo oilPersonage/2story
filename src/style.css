@@ -517,6 +517,9 @@ img {
 .modal-body-contents {
   @apply flex;
 }
+.modal-photo .modal-body {
+  @apply flex flex-col max-h-dvh
+}
 .modal-photo {
   @apply items-start justify-end fixed inset-0 ;
 }
